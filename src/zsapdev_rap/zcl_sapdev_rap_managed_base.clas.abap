@@ -1,5 +1,6 @@
-"! <p class="shorttext synchronized" lang="en">RAP Handler Base</p>
-CLASS zcl_sapdev_rap_base DEFINITION
+"! <p class="shorttext synchronized" lang="en">RAP Managed Handler Base</p>
+"! <p>This is a handler helper utility to execute common operations</p>
+CLASS zcl_sapdev_rap_managed_base DEFINITION
   PUBLIC
   FINAL
   CREATE PUBLIC .
@@ -37,14 +38,12 @@ CLASS zcl_sapdev_rap_base DEFINITION
                 i_instance    TYPE any
       CHANGING  c_path        TYPE any.
 
-
   PROTECTED SECTION.
-
     METHODS read_ancestor
       IMPORTING i_entity_name   TYPE abp_entity_name
                 i_instance_ref  TYPE REF TO data
-                "i_ancestor_info TYPE cl_abap_behvdescr=>t_pathnode
                 i_ancestor_info TYPE char1
+                "i_ancestor_info TYPE cl_abap_behvdescr=>t_pathnode
       RETURNING VALUE(r_result) TYPE REF TO data.
 
 
@@ -53,7 +52,7 @@ ENDCLASS.
 
 
 
-CLASS zcl_sapdev_rap_base IMPLEMENTATION.
+CLASS zcl_sapdev_rap_managed_base IMPLEMENTATION.
   METHOD constructor.
     bdef_name = i_bdef_name.
   ENDMETHOD.
@@ -186,6 +185,8 @@ CLASS zcl_sapdev_rap_base IMPLEMENTATION.
 *    " PROCESS PERMISSION REQUEST RESULTS
 *    LOOP AT <instance_permissions> ASSIGNING FIELD-SYMBOL(<instance_permission>).
 *      " Draft=>wipe state area
+*
+*      "TO-DO: do it in all case and check the results
 *      IF <instance_permission>-(cl_abap_behv=>co_techfield_name-is_draft) = if_abap_behv=>mk-on.
 *        APPEND INITIAL LINE TO reported_entity ASSIGNING FIELD-SYMBOL(<reported>).
 *        <reported>-(cl_abap_behv=>co_techfield_name-tky) = <instance_permission>-(cl_abap_behv=>co_techfield_name-tky).
@@ -211,6 +212,7 @@ CLASS zcl_sapdev_rap_base IMPLEMENTATION.
 *        APPEND INITIAL LINE TO failed_entity ASSIGNING FIELD-SYMBOL(<failed>).
 *        <failed>-(cl_abap_behv=>co_techfield_name-tky) = <instance_permission>-(cl_abap_behv=>co_techfield_name-tky).
 *
+*        "TO-DO: get label
 *        " Ensure You have a proper Data Element with proper Medium Label or @EndUserText.label annotation defined
 **        DATA(label) = cl_dd_ddl_annotation_service=>get_label_4_element_mde(
 **                          entityname  = entity_name
