@@ -10,7 +10,7 @@ lock master total etag LastChangedAt
 authorization master ( global )
 etag master LocalLastChangedAt
 {
-  create ( authorization : global );
+  create ( authorization : none );
   update;
   delete;
 
