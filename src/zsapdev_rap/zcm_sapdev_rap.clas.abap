@@ -19,7 +19,7 @@ CLASS zcm_sapdev_rap DEFINITION
 
     CONSTANTS:
       BEGIN OF mandatory_field,
-        msgid TYPE symsgid      VALUE 'ZCM_SAPDEV_RAP',
+        msgid TYPE symsgid      VALUE 'ZSAPDEV_RAP',
         msgno TYPE symsgno      VALUE '001',
         attr1 TYPE scx_attrname VALUE 'FIELD_NAME',
         attr2 TYPE scx_attrname VALUE '',

@@ -16,6 +16,7 @@ etag master LocalLastChangedAt
 
   field ( numbering : managed, readonly ) EntityKey;
   field ( readonly ) LocalCreatedBy, LocalCreatedAt, LocalLastChangedBy, LocalLastChangedAt, LastChangedAt, EntityKeyChar;
+  field (mandatory) Name;
 
   association _Nozzles { create; with draft; }
 
@@ -57,9 +58,11 @@ etag master LocalLastChangedAt
 {
   update;
   delete;
+
   field ( numbering : managed, readonly ) EntityKey;
   field ( readonly ) ParentKey;
   field ( readonly ) LocalCreatedBy, LocalCreatedAt, LocalLastChangedBy, LocalLastChangedAt, LastChangedAt, EntityKeyChar;
+  field (mandatory) NozzleSize;
 
   association _Printer { with draft; }
 
