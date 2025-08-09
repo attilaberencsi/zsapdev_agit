@@ -186,6 +186,7 @@ CLASS zcl_sapdev_rap_managed_base IMPLEMENTATION.
       " Draft=>wipe state area
 
       "TO-DO: do it in all case and check the results
+      "If tky does not have is_draft flag, do not do state area maybe at all
       IF <instance_permission>-(cl_abap_behv=>co_techfield_name-is_draft) = if_abap_behv=>mk-on.
         APPEND INITIAL LINE TO reported_entity ASSIGNING FIELD-SYMBOL(<reported>).
         <reported>-(cl_abap_behv=>co_techfield_name-tky) = <instance_permission>-(cl_abap_behv=>co_techfield_name-tky).
@@ -211,7 +212,7 @@ CLASS zcl_sapdev_rap_managed_base IMPLEMENTATION.
         APPEND INITIAL LINE TO failed_entity ASSIGNING FIELD-SYMBOL(<failed>).
         <failed>-(cl_abap_behv=>co_techfield_name-tky) = <instance_permission>-(cl_abap_behv=>co_techfield_name-tky).
 
-        "TO-DO: get label
+        "TO-DO: get label, when defined in metadata extension only
         " Ensure You have a proper Data Element with proper Medium Label or @EndUserText.label annotation defined
         DATA(label) = cl_dd_ddl_annotation_service=>get_label_4_element_mde(
                           entityname  = entity_name

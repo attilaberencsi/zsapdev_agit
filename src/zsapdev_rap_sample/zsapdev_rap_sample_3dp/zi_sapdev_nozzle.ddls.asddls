@@ -11,19 +11,25 @@ define view entity ZI_SAPDEV_Nozzle
 
 {
   key entity_key            as EntityKey,
-
       // UUID as Text
+      @EndUserText.label: 'Key'
       bintohex(entity_key)  as EntityKeyChar,
-
       parent_key            as ParentKey,
+
+      @EndUserText.label: 'Name'
       nozzle_name           as NozzleName,
 
+      @EndUserText.label: 'Size'
       @Semantics.quantity.unitOfMeasure: 'NozzleUom'
       nozzle_size           as NozzleSize,
 
       nozzle_uom            as NozzleUom,
+      @EndUserText.label: 'Manufacturer'
       manufacturer          as Manufacturer,
+
+      @EndUserText.label: 'Description'
       description           as Description,
+
       local_created_by      as LocalCreatedBy,
       local_created_at      as LocalCreatedAt,
       local_last_changed_by as LocalLastChangedBy,

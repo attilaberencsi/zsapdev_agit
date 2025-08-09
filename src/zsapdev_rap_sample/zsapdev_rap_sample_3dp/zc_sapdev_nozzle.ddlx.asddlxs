@@ -35,28 +35,24 @@ annotate entity ZC_SAPDEV_Nozzle with
   @UI.hidden: true
   ParentKey;
 
-  @EndUserText.label: 'ID'
   @UI.fieldGroup: [ { qualifier: 'FGGeneral', position: 10 } ]
   @UI.lineItem: [ { position: 10 } ]
   NozzleName;
 
-  @EndUserText.label: 'Size'
   @UI.fieldGroup: [ { qualifier: 'FGGeneral', position: 20 } ]
   @UI.lineItem: [ { position: 20 } ]
   NozzleSize;
 
-  @EndUserText.label: 'Manufacturer'
+ 
   @UI.fieldGroup: [ { qualifier: 'FGGeneral', position: 40 } ]
   @UI.lineItem: [ { position: 40 } ]
   Manufacturer;
 
-  @EndUserText.label: 'Description'
   @UI.fieldGroup: [ { qualifier: 'FGGeneral', position: 50 } ]
   @UI.lineItem: [ { position: 50 } ]
   @UI.multiLineText: true
   Description;
 
-  @EndUserText.label: 'Key'
   @UI.fieldGroup: [ { qualifier: 'FGKeys', position: 10 } ]
   EntityKeyChar;
 

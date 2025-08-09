@@ -11,12 +11,17 @@ define root view entity ZI_SAPDEV_3DPrinter
 
 {
   key entity_key            as EntityKey,
-
       // UUID as Text
+      @EndUserText.label: 'Key'
       bintohex(entity_key)  as EntityKeyChar,
 
+      @EndUserText.label: 'ID'
       printer_id            as PrinterId,
+
+      @EndUserText.label: 'Name'
       name                  as Name,
+
+      @EndUserText.label: 'Manufacturer'
       manufacturer          as Manufacturer,
 
       @Semantics.user.createdBy: true
