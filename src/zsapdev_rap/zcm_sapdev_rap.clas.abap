@@ -25,7 +25,16 @@ CLASS zcm_sapdev_rap DEFINITION
         attr2 TYPE scx_attrname VALUE '',
         attr3 TYPE scx_attrname VALUE '',
         attr4 TYPE scx_attrname VALUE '',
-      END OF mandatory_field.
+      END OF mandatory_field,
+
+      BEGIN OF mandatory_field_no_label,
+        msgid TYPE symsgid      VALUE 'ZSAPDEV_RAP',
+        msgno TYPE symsgno      VALUE '002',
+        attr1 TYPE scx_attrname VALUE '',
+        attr2 TYPE scx_attrname VALUE '',
+        attr3 TYPE scx_attrname VALUE '',
+        attr4 TYPE scx_attrname VALUE '',
+      END OF mandatory_field_no_label.
 
   PROTECTED SECTION.
   PRIVATE SECTION.

@@ -1,0 +1,80 @@
+@Metadata.layer: #CUSTOMER
+
+@UI.headerInfo: { typeName: 'Nozzle',
+                  typeNamePlural: 'Nozzles',
+                  title: { type: #STANDARD, value: 'NozzleName' },
+                  description: { type: #STANDARD, value: 'Manufacturer' } }
+
+@UI.presentationVariant: [ { sortOrder: [ { by: 'NozzleName' } ],
+                             visualizations: [ { type: #AS_LINEITEM } ],
+                             requestAtLeast: [ 'NozzleName' ] } ]
+annotate entity ZC_SAPDEV_Nozzle_ND with
+{
+  @UI.facet: [ { purpose: #HEADER, type: #FIELDGROUP_REFERENCE, position: 10, targetQualifier: 'CRAdminInfo' },
+                 { purpose: #HEADER, type: #FIELDGROUP_REFERENCE, position: 20, targetQualifier: 'CHAdminInfo' },
+                 { id: 'NOZZLE', type: #COLLECTION, position: 10 },
+                 { id: 'GeneralInfo',
+                   purpose: #STANDARD,
+                   type: #FIELDGROUP_REFERENCE,
+                   label: 'General Information',
+                   position: 10,
+                   parentId: 'NOZZLE',
+                   targetQualifier: 'FGGeneral' },
+                 { id: 'Keys',
+                   purpose: #STANDARD,
+                   type: #FIELDGROUP_REFERENCE,
+                   label: 'Keys',
+                   position: 20,
+                   parentId: 'NOZZLE',
+                   targetQualifier: 'FGKeys' } ]
+  @UI.hidden: true
+  EntityKey;
+
+  @UI.hidden: true
+  ParentKey;
+
+  @UI.fieldGroup: [ { qualifier: 'FGGeneral', position: 10 } ]
+  @UI.lineItem: [ { position: 10 } ]
+  NozzleName;
+
+  @UI.fieldGroup: [ { qualifier: 'FGGeneral', position: 20 } ]
+  @UI.lineItem: [ { position: 20 } ]
+  NozzleSize;
+
+
+  @UI.fieldGroup: [ { qualifier: 'FGGeneral', position: 40 } ]
+  @UI.lineItem: [ { position: 40 } ]
+  Manufacturer;
+
+  @UI.fieldGroup: [ { qualifier: 'FGGeneral', position: 50 } ]
+  @UI.lineItem: [ { position: 50 } ]
+  @UI.multiLineText: true
+  Description;
+
+  @UI.fieldGroup: [ { qualifier: 'FGKeys', position: 10 } ]
+  EntityKeyChar;
+
+  @UI.fieldGroup: [ { qualifier: 'CHAdminInfo', position: 10 } ]
+  @UI.lineItem: [ { position: 70 } ]
+  LocalLastChangedBy;
+
+  @UI.hidden: true
+  LocalLastChangedByName;
+
+  @UI.fieldGroup: [ { qualifier: 'CHAdminInfo', position: 20 } ]
+  @UI.lineItem: [ { position: 80 } ]
+  LocalLastChangedAt;
+
+  @UI.fieldGroup: [ { qualifier: 'CRAdminInfo', position: 30 } ]
+  LocalCreatedBy;
+
+  @UI.hidden: true
+  LocalCreatedByName;
+
+  @UI.fieldGroup: [ { qualifier: 'CRAdminInfo', position: 40 } ]
+  LocalCreatedAt;
+
+  @UI.hidden: true
+  LastChangedAt;
+
+}

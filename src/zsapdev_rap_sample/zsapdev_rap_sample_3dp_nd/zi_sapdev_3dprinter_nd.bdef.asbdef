@@ -1,0 +1,73 @@
+managed;
+strict ( 2 );
+
+define behavior for ZI_SAPDEV_3DPrinter_ND alias Printer
+implementation in class zbp_i_sapdev_3dprinter_nd unique
+persistent table zsapdev_3dp_nd
+lock master
+authorization master ( global )
+etag master LocalLastChangedAt
+{
+  create;
+  update;
+  delete;
+
+  field ( numbering : managed, readonly ) EntityKey;
+  field ( readonly ) LocalCreatedBy, LocalCreatedAt, LocalLastChangedBy, LocalLastChangedAt, LastChangedAt, EntityKeyChar;
+  field ( mandatory ) Name;
+
+  association _Nozzles { create; }
+
+  validation validate_mandatory_fields on save { create; update; }
+
+  mapping for zsapdev_3dp_nd
+    {
+      EntityKey          = entity_key;
+      PrinterId          = printer_id;
+      Name               = name;
+      Manufacturer       = manufacturer;
+      LocalCreatedBy     = local_created_by;
+      LocalCreatedAt     = local_created_at;
+      LocalLastChangedBy = local_last_changed_by;
+      LocalLastChangedAt = local_last_changed_at;
+      LastChangedAt      = last_changed_at;
+    }
+
+}
+
+define behavior for ZI_SAPDEV_Nozzle_ND alias Nozzle
+implementation in class zbp_i_sapdev_nozzle_nd unique
+persistent table zsapdev_nozzlend
+lock dependent by _Printer
+authorization dependent by _Printer
+etag master LocalLastChangedAt
+{
+  update;
+  delete;
+
+  field ( numbering : managed, readonly ) EntityKey;
+  field ( readonly ) ParentKey;
+  field ( readonly ) LocalCreatedBy, LocalCreatedAt, LocalLastChangedBy, LocalLastChangedAt, LastChangedAt, EntityKeyChar;
+  field ( mandatory ) NozzleSize;
+
+  association _Printer;
+
+  validation validate_mandatory_fields on save { create; update; }
+
+  mapping for zsapdev_nozzlend
+    {
+      EntityKey          = entity_key;
+      ParentKey          = parent_key;
+      NozzleName         = nozzle_name;
+      NozzleSize         = nozzle_size;
+      NozzleUom          = nozzle_uom;
+      Description        = description;
+      Manufacturer       = manufacturer;
+      LocalCreatedBy     = local_created_by;
+      LocalCreatedAt     = local_created_at;
+      LocalLastChangedBy = local_last_changed_by;
+      LocalLastChangedAt = local_last_changed_at;
+      LastChangedAt      = last_changed_at;
+    }
+
+}

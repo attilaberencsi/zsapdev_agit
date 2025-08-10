@@ -183,15 +183,13 @@ CLASS zcl_sapdev_rap_managed_base IMPLEMENTATION.
 
     " PROCESS PERMISSION REQUEST RESULTS
     LOOP AT <instance_permissions> ASSIGNING FIELD-SYMBOL(<instance_permission>).
-      " Draft=>wipe state area
+      " Wipe state area
 
-      "TO-DO: do it in all case and check the results
-      "If tky does not have is_draft flag, do not do state area maybe at all
-      IF <instance_permission>-(cl_abap_behv=>co_techfield_name-is_draft) = if_abap_behv=>mk-on.
-        APPEND INITIAL LINE TO reported_entity ASSIGNING FIELD-SYMBOL(<reported>).
-        <reported>-(cl_abap_behv=>co_techfield_name-tky) = <instance_permission>-(cl_abap_behv=>co_techfield_name-tky).
-        <reported>-(cl_abap_behv=>co_techfield_name-state_area) = co_state_area.
-      ENDIF.
+      " IF <instance_permission>-(cl_abap_behv=>co_techfield_name-is_draft) = if_abap_behv=>mk-on.
+      APPEND INITIAL LINE TO reported_entity ASSIGNING FIELD-SYMBOL(<reported>).
+      <reported>-(cl_abap_behv=>co_techfield_name-tky) = <instance_permission>-(cl_abap_behv=>co_techfield_name-tky).
+      <reported>-(cl_abap_behv=>co_techfield_name-state_area) = co_state_area.
+      " ENDIF.
 
       " Find corresponding entity instance we read in mass previously
       ASSIGN COMPONENT cl_abap_behv=>co_techfield_name-tky OF STRUCTURE <instance_permission> TO FIELD-SYMBOL(<%tky>).
@@ -212,7 +210,6 @@ CLASS zcl_sapdev_rap_managed_base IMPLEMENTATION.
         APPEND INITIAL LINE TO failed_entity ASSIGNING FIELD-SYMBOL(<failed>).
         <failed>-(cl_abap_behv=>co_techfield_name-tky) = <instance_permission>-(cl_abap_behv=>co_techfield_name-tky).
 
-        "TO-DO: get label, when defined in metadata extension only
         " Ensure You have a proper Data Element with proper Medium Label or @EndUserText.label annotation defined
         DATA(label) = cl_dd_ddl_annotation_service=>get_label_4_element_mde(
                           entityname  = entity_name
@@ -225,15 +222,21 @@ CLASS zcl_sapdev_rap_managed_base IMPLEMENTATION.
 
         ASSIGN COMPONENT cl_abap_behv=>co_techfield_name-path OF STRUCTURE <reported> TO FIELD-SYMBOL(<%path>).
         IF sy-subrc = 0.
-          "Child entity.
+          " Child entity.
           fill_path( EXPORTING i_entity_name = entity_name
                                i_instance    = <entity>
                      CHANGING  c_path        = <reported>-(cl_abap_behv=>co_techfield_name-path) ).
         ENDIF.
 
-        <reported>-(cl_abap_behv=>co_techfield_name-msg) = NEW zcm_sapdev_rap(
-                                                                   textid     = zcm_sapdev_rap=>mandatory_field
-                                                                   field_name = CONV #( label ) ).
+        " In case the field label could not be determined, we say "Field is mandatory"
+        IF label-value IS INITIAL.
+          <reported>-(cl_abap_behv=>co_techfield_name-msg) = NEW zcm_sapdev_rap(
+              textid = zcm_sapdev_rap=>mandatory_field_no_label ).
+        ELSE.
+          <reported>-(cl_abap_behv=>co_techfield_name-msg) = NEW zcm_sapdev_rap(
+                                                                     textid     = zcm_sapdev_rap=>mandatory_field
+                                                                     field_name = CONV #( label-value ) ).
+        ENDIF.
       ENDLOOP.
 
     ENDLOOP.

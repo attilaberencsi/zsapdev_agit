@@ -12,7 +12,13 @@
      <SPRSL>E</SPRSL>
      <ARBGB>ZSAPDEV_RAP</ARBGB>
      <MSGNR>001</MSGNR>
-     <TEXT>Field &amp;1 is mandatory</TEXT>
+     <TEXT>&amp;1 is mandatory</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZSAPDEV_RAP</ARBGB>
+     <MSGNR>002</MSGNR>
+     <TEXT>Field is mandatory</TEXT>
     </T100>
    </T100>
   </asx:values>
