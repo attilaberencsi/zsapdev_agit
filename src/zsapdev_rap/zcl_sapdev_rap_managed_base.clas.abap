@@ -1,44 +1,32 @@
-"! <p class="shorttext synchronized" lang="en">RAP Managed Handler Base</p>
-"! <p>This is a handler helper utility to execute common operations</p>
+"! <p class="shorttext synchronized" lang="en">RAP Handler Base - Managed Scenario</p>
+"! <p>Behavior handler utility to execute common operations</p>
 CLASS zcl_sapdev_rap_managed_base DEFINITION
   PUBLIC
   FINAL
   CREATE PUBLIC .
 
   PUBLIC SECTION.
-    "! <p class="shorttext synchronized">BO Name</p>
+    INTERFACES zif_sapdev_rap_managed_base.
+
+    ALIASES fill_message_path         FOR zif_sapdev_rap_managed_base~fill_message_path.
+    ALIASES validate_mandatory_fields FOR zif_sapdev_rap_managed_base~validate_mandatory_fields.
+
+    "! <p class="shorttext synchronized">Business Object Name</p>
     DATA bdef_name TYPE abp_root_entity_name READ-ONLY.
 
-    "! <p class="shorttext synchronized">Setup</p>
+    "! <p class="shorttext synchronized">Setup the handler class</p>
     "!
-    "! @parameter i_bdef_name | <p class="shorttext synchronized">Behavior definition name</p>
+    "! @parameter i_bdef_name | <p class="shorttext synchronized">Behavior definition (BO) name</p>
     METHODS constructor
       IMPORTING i_bdef_name TYPE abp_root_entity_name.
 
-    "! <p class="shorttext synchronized">Validate Mandatory fields</p>
-    "! <p><strong>BDEF</strong><br/>
-    "! <strong>validation</strong> validate_mandatory_fields <strong>on save { create; update; }</strong>
-    "! </p>
-    "!
-    "! @parameter keys            | <p class="shorttext synchronized">type table for validation</p>
-    "! @parameter failed_entity   | <p class="shorttext synchronized">failed-entity</p>
-    "! @parameter reported_entity | <p class="shorttext synchronized">reported-entity</p>
-    METHODS validate_mandatory_fields
-      IMPORTING !keys           TYPE STANDARD TABLE
-      CHANGING  failed_entity   TYPE STANDARD TABLE
-                reported_entity TYPE STANDARD TABLE.
-
-    "! <p class="shorttext synchronized">Fill Message Path (%path)</p>
-    "!
-    "! @parameter i_entity_name | <p class="shorttext synchronized">Entity Name</p>
-    "! @parameter i_instance    | <p class="shorttext synchronized">Instance</p>
-    "! @parameter c_path        | <p class="shorttext synchronized">%path</p>
-    METHODS fill_path
-      IMPORTING i_entity_name TYPE abp_entity_name
-                i_instance    TYPE any
-      CHANGING  c_path        TYPE any.
-
   PROTECTED SECTION.
+    "! <p class="shorttext synchronized">Retrieve parent entity instance</p>
+    "!
+    "! @parameter i_entity_name   | <p class="shorttext synchronized">Entity Name</p>
+    "! @parameter i_instance_ref  | <p class="shorttext synchronized">Entity instance data reference</p>
+    "! @parameter i_ancestor_info | <p class="shorttext synchronized">Parent entity type description</p>
+    "! @parameter r_result        | <p class="shorttext synchronized">Parent entity instance</p>
     METHODS read_ancestor
       IMPORTING i_entity_name   TYPE abp_entity_name
                 i_instance_ref  TYPE REF TO data
@@ -56,9 +44,7 @@ CLASS zcl_sapdev_rap_managed_base IMPLEMENTATION.
     bdef_name = i_bdef_name.
   ENDMETHOD.
 
-  METHOD validate_mandatory_fields.
-    CONSTANTS co_state_area TYPE string VALUE 'VALIDATE_MANDATORY_FIELDS'.
-
+  METHOD zif_sapdev_rap_managed_base~validate_mandatory_fields.
     DATA entity_name  TYPE cl_abap_behvdescr=>t_typename.
     DATA read_control TYPE REF TO data.
 
@@ -80,7 +66,7 @@ CLASS zcl_sapdev_rap_managed_base IMPLEMENTATION.
       entity_name = left_part_cutted.
     ENDIF.
 
-    " FETCH ENTITY INSTANCES TO BE CHECKED
+    " FETCH ENTITY INSTANCES TO BE VALIDATED
 
     " Create data with the required types for the READ operation
 
@@ -93,7 +79,8 @@ CLASS zcl_sapdev_rap_managed_base IMPLEMENTATION.
     ASSIGN keys_ref->* TO <keys>.
     MOVE-CORRESPONDING keys TO <keys>.
 
-    " Control structure - we need all fields for the validation
+    " Fill up Control structure - we fetch all fields for the validation
+    " Review further performance optimization possibility here
     LOOP AT <keys> ASSIGNING FIELD-SYMBOL(<key>).
       ASSIGN COMPONENT cl_abap_behv=>co_techfield_name-control OF STRUCTURE <key> TO FIELD-SYMBOL(<%control>).
 
@@ -187,7 +174,7 @@ CLASS zcl_sapdev_rap_managed_base IMPLEMENTATION.
 
       APPEND INITIAL LINE TO reported_entity ASSIGNING FIELD-SYMBOL(<reported>).
       <reported>-(cl_abap_behv=>co_techfield_name-tky) = <instance_permission>-(cl_abap_behv=>co_techfield_name-tky).
-      <reported>-(cl_abap_behv=>co_techfield_name-state_area) = co_state_area.
+      <reported>-(cl_abap_behv=>co_techfield_name-state_area) = zif_sapdev_rap_managed_base=>co_message_state_area-mandatory_field.
 
       " Find corresponding entity instance we read in mass previously
       ASSIGN COMPONENT cl_abap_behv=>co_techfield_name-tky OF STRUCTURE <instance_permission> TO FIELD-SYMBOL(<%tky>).
@@ -227,15 +214,15 @@ CLASS zcl_sapdev_rap_managed_base IMPLEMENTATION.
 
         APPEND INITIAL LINE TO reported_entity ASSIGNING <reported>.
         <reported>-(cl_abap_behv=>co_techfield_name-tky) = <instance_permission>-(cl_abap_behv=>co_techfield_name-tky).
-        <reported>-(cl_abap_behv=>co_techfield_name-state_area) = co_state_area.
+        <reported>-(cl_abap_behv=>co_techfield_name-state_area) = zif_sapdev_rap_managed_base=>co_message_state_area-mandatory_field.
         <reported>-(cl_abap_behv=>co_techfield_name-element)-(perm_request_field-name) = if_abap_behv=>mk-on.
 
         ASSIGN COMPONENT cl_abap_behv=>co_techfield_name-path OF STRUCTURE <reported> TO FIELD-SYMBOL(<%path>).
         IF sy-subrc = 0.
           " Child entity.
-          fill_path( EXPORTING i_entity_name = entity_name
-                               i_instance    = <entity>
-                     CHANGING  c_path        = <reported>-(cl_abap_behv=>co_techfield_name-path) ).
+          fill_message_path( EXPORTING i_entity_name = entity_name
+                                       i_instance    = <entity>
+                             CHANGING  c_path        = <reported>-(cl_abap_behv=>co_techfield_name-path) ).
         ENDIF.
 
         " In case the field label could not be determined, we say "Field is mandatory"
@@ -252,16 +239,16 @@ CLASS zcl_sapdev_rap_managed_base IMPLEMENTATION.
     ENDLOOP.
   ENDMETHOD.
 
-  METHOD fill_path.
+  METHOD zif_sapdev_rap_managed_base~fill_message_path.
     cl_abap_behvdescr=>get_path( EXPORTING p_entity = i_entity_name
                                  IMPORTING p_path   = DATA(path) ).
 
-    DATA(first) = abap_true.
+    DATA(is_first) = abap_true.
     LOOP AT path INTO DATA(ancestor) STEP -1.
-      IF first = abap_true.
+      IF is_first = abap_true.
         DATA(instance_ref) = REF data( i_instance ).
         DATA(entity_name) = i_entity_name.
-        first = abap_false.
+        is_first = abap_false.
       ENDIF.
 
       DATA(ancestor_instance_ref) = read_ancestor( i_entity_name   = entity_name

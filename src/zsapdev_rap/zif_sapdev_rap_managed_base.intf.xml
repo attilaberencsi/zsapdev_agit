@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<abapGit version="v1.0.0" serializer="LCL_OBJECT_INTF" serializer_version="v1.0.0">
+ <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
+  <asx:values>
+   <VSEOINTERF>
+    <CLSNAME>ZIF_SAPDEV_RAP_MANAGED_BASE</CLSNAME>
+    <LANGU>E</LANGU>
+    <DESCRIPT>RAP Handler Base - Managed Scenario</DESCRIPT>
+    <EXPOSURE>2</EXPOSURE>
+    <STATE>1</STATE>
+    <UNICODE>X</UNICODE>
+   </VSEOINTERF>
+   <DESCRIPTIONS>
+    <SEOCOMPOTX>
+     <CMPNAME>CO_MESSAGE_STATE_AREA</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>State Message Area for mandatory field validation</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>FILL_MESSAGE_PATH</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Fill Message Path (%path)</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>VALIDATE_MANDATORY_FIELDS</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Validate Mandatory fields</DESCRIPT>
+    </SEOCOMPOTX>
+   </DESCRIPTIONS>
+   <DESCRIPTIONS_SUB>
+    <SEOSUBCOTX>
+     <CMPNAME>FILL_MESSAGE_PATH</CMPNAME>
+     <SCONAME>C_PATH</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>%path</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>FILL_MESSAGE_PATH</CMPNAME>
+     <SCONAME>I_ENTITY_NAME</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Entity Name</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>FILL_MESSAGE_PATH</CMPNAME>
+     <SCONAME>I_INSTANCE</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Instance</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>VALIDATE_MANDATORY_FIELDS</CMPNAME>
+     <SCONAME>FAILED_ENTITY</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>failed-entity</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>VALIDATE_MANDATORY_FIELDS</CMPNAME>
+     <SCONAME>KEYS</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>type table for validation</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>VALIDATE_MANDATORY_FIELDS</CMPNAME>
+     <SCONAME>REPORTED_ENTITY</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>reported-entity</DESCRIPT>
+    </SEOSUBCOTX>
+   </DESCRIPTIONS_SUB>
+  </asx:values>
+ </asx:abap>
+</abapGit>
