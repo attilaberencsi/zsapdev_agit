@@ -14,7 +14,10 @@ define root view entity ZC_SAPDEV_3DPrinter
       EntityKeyChar,
 
       PrinterId,
+
+      @EndUserText.label: 'Name'
       Name,
+
       Manufacturer,
 
       @ObjectModel.text.element: [ 'LocalCreatedByName' ]

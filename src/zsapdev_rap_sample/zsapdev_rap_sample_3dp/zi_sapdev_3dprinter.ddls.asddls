@@ -18,10 +18,8 @@ define root view entity ZI_SAPDEV_3DPrinter
       @EndUserText.label: 'ID'
       printer_id            as PrinterId,
 
-      @EndUserText.label: 'Name'
       name                  as Name,
 
-      @EndUserText.label: 'Manufacturer'
       manufacturer          as Manufacturer,
 
       @Semantics.user.createdBy: true

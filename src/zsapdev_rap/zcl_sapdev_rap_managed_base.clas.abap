@@ -185,11 +185,9 @@ CLASS zcl_sapdev_rap_managed_base IMPLEMENTATION.
     LOOP AT <instance_permissions> ASSIGNING FIELD-SYMBOL(<instance_permission>).
       " Wipe state area
 
-      " IF <instance_permission>-(cl_abap_behv=>co_techfield_name-is_draft) = if_abap_behv=>mk-on.
       APPEND INITIAL LINE TO reported_entity ASSIGNING FIELD-SYMBOL(<reported>).
       <reported>-(cl_abap_behv=>co_techfield_name-tky) = <instance_permission>-(cl_abap_behv=>co_techfield_name-tky).
       <reported>-(cl_abap_behv=>co_techfield_name-state_area) = co_state_area.
-      " ENDIF.
 
       " Find corresponding entity instance we read in mass previously
       ASSIGN COMPONENT cl_abap_behv=>co_techfield_name-tky OF STRUCTURE <instance_permission> TO FIELD-SYMBOL(<%tky>).
@@ -214,6 +212,18 @@ CLASS zcl_sapdev_rap_managed_base IMPLEMENTATION.
         DATA(label) = cl_dd_ddl_annotation_service=>get_label_4_element_mde(
                           entityname  = entity_name
                           elementname = CONV #( perm_request_field-name ) ).
+
+        " In case the underlying DB table is not containing data elements with proper texts,
+        " or CDS entity and metadata extension is not containing the required labels annotations, we need to try
+        " to identify the projection view if any, and get the field label texts from there
+        IF label-value IS INITIAL.
+          cl_abap_behv_aux=>get_current_context( IMPORTING from_projection = DATA(cds_projection_entity_name) ).
+          IF cds_projection_entity_name IS NOT INITIAL.
+            label = cl_dd_ddl_annotation_service=>get_label_4_element_mde(
+                        entityname  = cds_projection_entity_name
+                        elementname = CONV #( perm_request_field-name ) ).
+          ENDIF.
+        ENDIF.
 
         APPEND INITIAL LINE TO reported_entity ASSIGNING <reported>.
         <reported>-(cl_abap_behv=>co_techfield_name-tky) = <instance_permission>-(cl_abap_behv=>co_techfield_name-tky).
