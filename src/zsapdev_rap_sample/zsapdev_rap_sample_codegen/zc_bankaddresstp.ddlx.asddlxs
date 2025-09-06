@@ -1,0 +1,584 @@
+@Metadata.layer: #CORE
+@UI.headerInfo.title.type: #STANDARD
+@UI.headerInfo.title.value: 'BankCountry'
+@UI.headerInfo.description.type: #STANDARD
+@UI.headerInfo.description.value: 'BankCountry'
+annotate view ZC_BANKADDRESSTP with
+{
+  @UI.facet: [ {
+    label: 'General Information', 
+    id: 'GeneralInfo', 
+    purpose: #STANDARD, 
+    position: 10 , 
+    type: #IDENTIFICATION_REFERENCE
+  }, 
+  {
+    label: 'BankScriptedAddress Items', 
+    id: 'BankScriptedAddressItems', 
+    purpose: #STANDARD, 
+    position: 11 , 
+    type: #LINEITEM_REFERENCE, 
+    targetElement: '_BankScriptVariant'
+  } ]
+  @UI.identification: [ {
+    position: 10 
+  } ]
+  @UI.lineItem: [ {
+    position: 10 
+  } ]
+  @UI.selectionField: [ {
+    position: 10 
+  } ]
+  BankCountry;
+  
+  @UI.identification: [ {
+    position: 20 
+  } ]
+  @UI.lineItem: [ {
+    position: 20 
+  } ]
+  @UI.selectionField: [ {
+    position: 20 
+  } ]
+  BankInternalID;
+  
+  @UI.identification: [ {
+    position: 30 
+  } ]
+  @UI.lineItem: [ {
+    position: 30 
+  } ]
+  @UI.selectionField: [ {
+    position: 30 
+  } ]
+  StreetName;
+  
+  @UI.identification: [ {
+    position: 40 
+  } ]
+  @UI.lineItem: [ {
+    position: 40 
+  } ]
+  @UI.selectionField: [ {
+    position: 40 
+  } ]
+  HouseNumber;
+  
+  @UI.identification: [ {
+    position: 50 
+  } ]
+  @UI.lineItem: [ {
+    position: 50 
+  } ]
+  @UI.selectionField: [ {
+    position: 50 
+  } ]
+  HouseNumberSupplementText;
+  
+  @UI.identification: [ {
+    position: 60 
+  } ]
+  @UI.lineItem: [ {
+    position: 60 
+  } ]
+  @UI.selectionField: [ {
+    position: 60 
+  } ]
+  CityName;
+  
+  @UI.identification: [ {
+    position: 70 
+  } ]
+  @UI.lineItem: [ {
+    position: 70 
+  } ]
+  @UI.selectionField: [ {
+    position: 70 
+  } ]
+  PostalCode;
+  
+  @UI.identification: [ {
+    position: 80 
+  } ]
+  @UI.lineItem: [ {
+    position: 80 
+  } ]
+  @UI.selectionField: [ {
+    position: 80 
+  } ]
+  Country;
+  
+  @UI.identification: [ {
+    position: 90 
+  } ]
+  @UI.lineItem: [ {
+    position: 90 
+  } ]
+  @UI.selectionField: [ {
+    position: 90 
+  } ]
+  Region;
+  
+  @UI.identification: [ {
+    position: 100 
+  } ]
+  @UI.lineItem: [ {
+    position: 100 
+  } ]
+  @UI.selectionField: [ {
+    position: 100 
+  } ]
+  CorrespondenceLanguage;
+  
+  @UI.identification: [ {
+    position: 110 
+  } ]
+  @UI.lineItem: [ {
+    position: 110 
+  } ]
+  @UI.selectionField: [ {
+    position: 110 
+  } ]
+  DistrictName;
+  
+  @UI.identification: [ {
+    position: 120 
+  } ]
+  @UI.lineItem: [ {
+    position: 120 
+  } ]
+  @UI.selectionField: [ {
+    position: 120 
+  } ]
+  VillageName;
+  
+  @UI.identification: [ {
+    position: 130 
+  } ]
+  @UI.lineItem: [ {
+    position: 130 
+  } ]
+  @UI.selectionField: [ {
+    position: 130 
+  } ]
+  CompanyPostalCode;
+  
+  @UI.identification: [ {
+    position: 140 
+  } ]
+  @UI.lineItem: [ {
+    position: 140 
+  } ]
+  @UI.selectionField: [ {
+    position: 140 
+  } ]
+  StreetAddrNonDeliverableReason;
+  
+  @UI.identification: [ {
+    position: 150 
+  } ]
+  @UI.lineItem: [ {
+    position: 150 
+  } ]
+  @UI.selectionField: [ {
+    position: 150 
+  } ]
+  StreetPrefixName1;
+  
+  @UI.identification: [ {
+    position: 160 
+  } ]
+  @UI.lineItem: [ {
+    position: 160 
+  } ]
+  @UI.selectionField: [ {
+    position: 160 
+  } ]
+  StreetPrefixName2;
+  
+  @UI.identification: [ {
+    position: 170 
+  } ]
+  @UI.lineItem: [ {
+    position: 170 
+  } ]
+  @UI.selectionField: [ {
+    position: 170 
+  } ]
+  StreetSuffixName1;
+  
+  @UI.identification: [ {
+    position: 180 
+  } ]
+  @UI.lineItem: [ {
+    position: 180 
+  } ]
+  @UI.selectionField: [ {
+    position: 180 
+  } ]
+  StreetSuffixName2;
+  
+  @UI.identification: [ {
+    position: 190 
+  } ]
+  @UI.lineItem: [ {
+    position: 190 
+  } ]
+  @UI.selectionField: [ {
+    position: 190 
+  } ]
+  Building;
+  
+  @UI.identification: [ {
+    position: 200 
+  } ]
+  @UI.lineItem: [ {
+    position: 200 
+  } ]
+  @UI.selectionField: [ {
+    position: 200 
+  } ]
+  Floor;
+  
+  @UI.identification: [ {
+    position: 210 
+  } ]
+  @UI.lineItem: [ {
+    position: 210 
+  } ]
+  @UI.selectionField: [ {
+    position: 210 
+  } ]
+  RoomNumber;
+  
+  @UI.identification: [ {
+    position: 220 
+  } ]
+  @UI.lineItem: [ {
+    position: 220 
+  } ]
+  @UI.selectionField: [ {
+    position: 220 
+  } ]
+  FormOfAddress;
+  
+  @UI.identification: [ {
+    position: 230 
+  } ]
+  @UI.lineItem: [ {
+    position: 230 
+  } ]
+  @UI.selectionField: [ {
+    position: 230 
+  } ]
+  TaxJurisdiction;
+  
+  @UI.identification: [ {
+    position: 240 
+  } ]
+  @UI.lineItem: [ {
+    position: 240 
+  } ]
+  @UI.selectionField: [ {
+    position: 240 
+  } ]
+  TransportZone;
+  
+  @UI.identification: [ {
+    position: 250 
+  } ]
+  @UI.lineItem: [ {
+    position: 250 
+  } ]
+  @UI.selectionField: [ {
+    position: 250 
+  } ]
+  POBox;
+  
+  @UI.identification: [ {
+    position: 260 
+  } ]
+  @UI.lineItem: [ {
+    position: 260 
+  } ]
+  @UI.selectionField: [ {
+    position: 260 
+  } ]
+  POBoxAddrNonDeliverableReason;
+  
+  @UI.identification: [ {
+    position: 270 
+  } ]
+  @UI.lineItem: [ {
+    position: 270 
+  } ]
+  @UI.selectionField: [ {
+    position: 270 
+  } ]
+  POBoxIsWithoutNumber;
+  
+  @UI.identification: [ {
+    position: 280 
+  } ]
+  @UI.lineItem: [ {
+    position: 280 
+  } ]
+  @UI.selectionField: [ {
+    position: 280 
+  } ]
+  POBoxPostalCode;
+  
+  @UI.identification: [ {
+    position: 290 
+  } ]
+  @UI.lineItem: [ {
+    position: 290 
+  } ]
+  @UI.selectionField: [ {
+    position: 290 
+  } ]
+  POBoxLobbyName;
+  
+  @UI.identification: [ {
+    position: 300 
+  } ]
+  @UI.lineItem: [ {
+    position: 300 
+  } ]
+  @UI.selectionField: [ {
+    position: 300 
+  } ]
+  POBoxDeviatingCityName;
+  
+  @UI.identification: [ {
+    position: 310 
+  } ]
+  @UI.lineItem: [ {
+    position: 310 
+  } ]
+  @UI.selectionField: [ {
+    position: 310 
+  } ]
+  POBoxDeviatingRegion;
+  
+  @UI.identification: [ {
+    position: 320 
+  } ]
+  @UI.lineItem: [ {
+    position: 320 
+  } ]
+  @UI.selectionField: [ {
+    position: 320 
+  } ]
+  POBoxDeviatingCountry;
+  
+  @UI.identification: [ {
+    position: 330 
+  } ]
+  @UI.lineItem: [ {
+    position: 330 
+  } ]
+  @UI.selectionField: [ {
+    position: 330 
+  } ]
+  CareOfName;
+  
+  @UI.identification: [ {
+    position: 340 
+  } ]
+  @UI.lineItem: [ {
+    position: 340 
+  } ]
+  @UI.selectionField: [ {
+    position: 340 
+  } ]
+  DeliveryServiceTypeCode;
+  
+  @UI.identification: [ {
+    position: 350 
+  } ]
+  @UI.lineItem: [ {
+    position: 350 
+  } ]
+  @UI.selectionField: [ {
+    position: 350 
+  } ]
+  DeliveryServiceNumber;
+  
+  @UI.identification: [ {
+    position: 360 
+  } ]
+  @UI.lineItem: [ {
+    position: 360 
+  } ]
+  @UI.selectionField: [ {
+    position: 360 
+  } ]
+  AddressTimeZone;
+  
+  @UI.identification: [ {
+    position: 370 
+  } ]
+  @UI.lineItem: [ {
+    position: 370 
+  } ]
+  @UI.selectionField: [ {
+    position: 370 
+  } ]
+  SecondaryRegionName;
+  
+  @UI.identification: [ {
+    position: 380 
+  } ]
+  @UI.lineItem: [ {
+    position: 380 
+  } ]
+  @UI.selectionField: [ {
+    position: 380 
+  } ]
+  TertiaryRegionName;
+  
+  @UI.identification: [ {
+    position: 390 
+  } ]
+  @UI.lineItem: [ {
+    position: 390 
+  } ]
+  @UI.selectionField: [ {
+    position: 390 
+  } ]
+  AddressRepresentationCode;
+  
+  @UI.identification: [ {
+    position: 400 
+  } ]
+  @UI.lineItem: [ {
+    position: 400 
+  } ]
+  @UI.selectionField: [ {
+    position: 400 
+  } ]
+  AddressID;
+  
+  @UI.identification: [ {
+    position: 410 
+  } ]
+  @UI.lineItem: [ {
+    position: 410 
+  } ]
+  @UI.selectionField: [ {
+    position: 410 
+  } ]
+  AddressSearchTerm1;
+  
+  @UI.identification: [ {
+    position: 420 
+  } ]
+  @UI.lineItem: [ {
+    position: 420 
+  } ]
+  @UI.selectionField: [ {
+    position: 420 
+  } ]
+  AddressSearchTerm2;
+  
+  @UI.identification: [ {
+    position: 430 
+  } ]
+  @UI.lineItem: [ {
+    position: 430 
+  } ]
+  @UI.selectionField: [ {
+    position: 430 
+  } ]
+  InternationalPhoneNumber;
+  
+  @UI.identification: [ {
+    position: 440 
+  } ]
+  @UI.lineItem: [ {
+    position: 440 
+  } ]
+  @UI.selectionField: [ {
+    position: 440 
+  } ]
+  InternationalMobilePhoneNumber;
+  
+  @UI.identification: [ {
+    position: 450 
+  } ]
+  @UI.lineItem: [ {
+    position: 450 
+  } ]
+  @UI.selectionField: [ {
+    position: 450 
+  } ]
+  InternationalFaxNumber;
+  
+  @UI.identification: [ {
+    position: 460 
+  } ]
+  @UI.lineItem: [ {
+    position: 460 
+  } ]
+  @UI.selectionField: [ {
+    position: 460 
+  } ]
+  EmailAddress;
+  
+  @EndUserText.label: '_Country'
+  @UI.identification: [ {
+    position: 470 , 
+    label: '_Country'
+  } ]
+  @UI.lineItem: [ {
+    position: 470 , 
+    label: '_Country'
+  } ]
+  @UI.selectionField: [ {
+    position: 470 
+  } ]
+  _Country;
+  
+  @EndUserText.label: '_FormOfAddress'
+  @UI.identification: [ {
+    position: 480 , 
+    label: '_FormOfAddress'
+  } ]
+  @UI.lineItem: [ {
+    position: 480 , 
+    label: '_FormOfAddress'
+  } ]
+  @UI.selectionField: [ {
+    position: 480 
+  } ]
+  _FormOfAddress;
+  
+  @EndUserText.label: '_Region'
+  @UI.identification: [ {
+    position: 490 , 
+    label: '_Region'
+  } ]
+  @UI.lineItem: [ {
+    position: 490 , 
+    label: '_Region'
+  } ]
+  @UI.selectionField: [ {
+    position: 490 
+  } ]
+  _Region;
+  
+  @EndUserText.label: '_BaseEntity'
+  @UI.identification: [ {
+    position: 520 , 
+    label: '_BaseEntity'
+  } ]
+  @UI.lineItem: [ {
+    position: 520 , 
+    label: '_BaseEntity'
+  } ]
+  @UI.selectionField: [ {
+    position: 520 
+  } ]
+  _BaseEntity;
+}

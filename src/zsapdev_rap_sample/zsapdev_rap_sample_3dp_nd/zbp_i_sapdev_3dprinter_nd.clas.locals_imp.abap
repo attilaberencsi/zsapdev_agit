@@ -3,14 +3,12 @@ CLASS lhc_Printer DEFINITION INHERITING FROM cl_abap_behavior_handler.
     CONSTANTS:
       co_bdef_name TYPE abp_root_entity_name VALUE 'ZI_SAPDEV_3DPrinter_ND'.
 
+
     METHODS get_global_authorizations FOR GLOBAL AUTHORIZATION
       IMPORTING REQUEST requested_authorizations FOR Printer RESULT result.
 
     METHODS validate_mandatory_fields FOR VALIDATE ON SAVE
       IMPORTING keys FOR Printer~validate_mandatory_fields.
-
-    METHODS get_instance_features FOR INSTANCE FEATURES
-      IMPORTING keys REQUEST requested_features FOR Printer RESULT result.
 
 ENDCLASS.
 
@@ -24,15 +22,6 @@ CLASS lhc_Printer IMPLEMENTATION.
                                                                   EXPORTING keys            = keys
                                                                   CHANGING  failed_entity   = failed-printer
                                                                             reported_entity = reported-printer ).
-  ENDMETHOD.
-
-  METHOD get_instance_features.
-    result = VALUE #( FOR k IN keys
-                      ( %tky                = k-%tky
-                        %field-Manufacturer = SWITCH #( 1
-                                                        WHEN 1
-                                                        THEN if_abap_behv=>fc-f-mandatory
-                                                        ELSE if_abap_behv=>fc-f-unrestricted ) ) ).
   ENDMETHOD.
 
 ENDCLASS.
