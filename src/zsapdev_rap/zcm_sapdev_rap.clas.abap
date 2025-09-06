@@ -42,7 +42,9 @@ ENDCLASS.
 
 
 
-CLASS zcm_sapdev_rap IMPLEMENTATION.
+CLASS ZCM_SAPDEV_RAP IMPLEMENTATION.
+
+
   METHOD constructor ##ADT_SUPPRESS_GENERATION.
     super->constructor( previous = previous ).
     CLEAR me->textid.

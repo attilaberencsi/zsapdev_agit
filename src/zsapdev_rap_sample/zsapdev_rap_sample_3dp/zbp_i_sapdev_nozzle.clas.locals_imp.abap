@@ -6,9 +6,6 @@ CLASS lhc_nozzle DEFINITION INHERITING FROM cl_abap_behavior_handler.
     METHODS validate_mandatory_fields FOR VALIDATE ON SAVE
       IMPORTING keys FOR Nozzle~validate_mandatory_fields.
 
-    METHODS get_instance_features FOR INSTANCE FEATURES
-      IMPORTING keys REQUEST requested_features FOR Nozzle RESULT result.
-
 ENDCLASS.
 
 CLASS lhc_nozzle IMPLEMENTATION.
@@ -17,15 +14,6 @@ CLASS lhc_nozzle IMPLEMENTATION.
                                                                   EXPORTING keys            = keys
                                                                   CHANGING  failed_entity   = failed-nozzle
                                                                             reported_entity = reported-nozzle ).
-  ENDMETHOD.
-
-  METHOD get_instance_features.
-    result = VALUE #( FOR k IN keys
-                      ( %tky                = k-%tky
-                        %field-Manufacturer = SWITCH #( 1
-                                                        WHEN 1
-                                                        THEN if_abap_behv=>fc-f-mandatory
-                                                        ELSE if_abap_behv=>fc-f-unrestricted ) ) ).
   ENDMETHOD.
 
 ENDCLASS.
