@@ -46,6 +46,7 @@ annotate entity ZC_SAPDEV_3DPrinter with
   @UI.lineItem: [ { position: 20 } ]
   Name;
 
+  @EndUserText.label: 'Manufacturer'
   @UI.fieldGroup: [ { qualifier: 'FGGeneral', position: 30 } ]
   @UI.lineItem: [ { position: 30 } ]
   Manufacturer;

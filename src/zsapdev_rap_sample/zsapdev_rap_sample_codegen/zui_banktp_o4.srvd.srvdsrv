@@ -1,8 +1,0 @@
-@EndUserText.label: 'Bank Master Data'
-@ObjectModel.leadingEntity.name: 'ZC_BANKTP'
-define service ZUI_BANKTP_O4
-  provider contracts odata_v4_ui {
-  expose ZC_BANKTP                as Bank;
-  expose ZC_BANKSCRIPTEDADDRESSTP as BankScriptedAddress;
-  expose ZC_BANKADDRESSTP         as BankAddress;
-}
