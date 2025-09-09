@@ -3,4 +3,4 @@
 - RAP sample applications utilizing the common handler
 - RAP Sample Applications
   - Managed
-    - Draft, Early Numbering
+    - Early Numbering with Number Ranges, Draft
