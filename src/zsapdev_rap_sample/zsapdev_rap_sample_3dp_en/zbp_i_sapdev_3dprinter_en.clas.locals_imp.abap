@@ -1,5 +1,7 @@
 CLASS lhc_Printer DEFINITION INHERITING FROM cl_abap_behavior_handler.
   PRIVATE SECTION.
+    CONSTANTS co_bdef_name TYPE abp_root_entity_name VALUE 'ZI_SAPDEV_3DPRINTER_EN'.
+
     CONSTANTS:
       BEGIN OF: co_nr_check_return_code,
         out_of_range    TYPE cl_numberrange_runtime=>nr_returncode VALUE 'X',
@@ -141,6 +143,10 @@ CLASS lhc_Printer IMPLEMENTATION.
   ENDMETHOD.
 
   METHOD validate_mandatory_fields.
+    NEW zcl_sapdev_rap_managed_base( i_bdef_name = co_bdef_name )->validate_mandatory_fields(
+                                                                  EXPORTING keys            = keys
+                                                                  CHANGING  failed_entity   = failed-printer
+                                                                            reported_entity = reported-printer ).
   ENDMETHOD.
 
 ENDCLASS.
