@@ -1,4 +1,4 @@
-@EndUserText.label: '3D Printrers'
+@EndUserText.label: '3D Printers'
 @ObjectModel.leadingEntity.name: 'ZC_SAPDEV_3DPRINTER'
 define service ZSAPDEV_3DP_UI_O4
   provider contracts odata_v4_ui {
