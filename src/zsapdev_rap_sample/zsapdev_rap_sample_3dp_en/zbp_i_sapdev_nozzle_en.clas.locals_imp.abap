@@ -12,8 +12,8 @@ CLASS lhc_Nozzle IMPLEMENTATION.
   METHOD validate_mandatory_fields.
     NEW zcl_sapdev_rap_managed_base( i_bdef_name = co_bdef_name )->validate_mandatory_fields(
                                                                   EXPORTING keys            = keys
-                                                                  CHANGING  failed_entity   = failed-printer
-                                                                            reported_entity = reported-printer ).
+                                                                  CHANGING  failed_entity   = failed-nozzle
+                                                                            reported_entity = reported-nozzle ).
   ENDMETHOD.
 
 ENDCLASS.
