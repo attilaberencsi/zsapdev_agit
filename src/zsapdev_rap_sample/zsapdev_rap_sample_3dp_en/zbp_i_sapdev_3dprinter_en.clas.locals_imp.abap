@@ -128,13 +128,18 @@ CLASS lhc_Printer IMPLEMENTATION.
       " Submitting sequence numbers manually is not allowed in this use case,
       " otherwise collision detection is needed.
       LOOP AT GROUP <printer_nozzles_group> ASSIGNING FIELD-SYMBOL(<printer_nozzles>).
-        LOOP AT <printer_nozzles>-%target INTO DATA(new_nozzle) WHERE NozzleId IS INITIAL.
-          max_number_in_system += 1.
+        LOOP AT <printer_nozzles>-%target INTO DATA(new_nozzle).
+          IF new_nozzle-NozzleId IS INITIAL.
+            max_number_in_system += 1.
+            DATA(nozzle_id) = max_number_in_system.
+          ELSE.
+            nozzle_id = new_nozzle-NozzleId.
+          ENDIF.
 
           APPEND VALUE #( %cid      = new_nozzle-%cid
                           %is_draft = new_nozzle-%is_draft
                           printerid = <printer_nozzles>-printerid
-                          nozzleid  = max_NUMBER_IN_SYSTEM )
+                          nozzleid  = nozzle_id )
                  TO mapped-nozzle.
 
         ENDLOOP.
