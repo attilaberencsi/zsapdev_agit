@@ -47,9 +47,6 @@ annotate entity ZC_SAPDEV_3DPrinter_EN with
   @UI.lineItem: [ { position: 30 } ]
   Manufacturer;
 
-  @UI.fieldGroup: [ { qualifier: 'FGKeys', position: 10 } ]
-  entitykeychar;
-
   @UI.fieldGroup: [ { qualifier: 'CHAdminInfo', position: 10 } ]
   @UI.lineItem: [ { position: 70 } ]
   LocalLastChangedBy;

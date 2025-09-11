@@ -52,9 +52,6 @@ annotate entity ZC_SAPDEV_Nozzle_EN with
   @UI.multiLineText: true
   Description;
 
-  @UI.fieldGroup: [ { qualifier: 'FGKeys', position: 10 } ]
-  entitykeychar;
-
   @UI.fieldGroup: [ { qualifier: 'CHAdminInfo', position: 10 } ]
   @UI.lineItem: [ { position: 70 } ]
   LocalLastChangedBy;

@@ -45,9 +45,10 @@ CLASS lhc_Printer IMPLEMENTATION.
                                                           object        = co_nro_printer
                                                           length_check  = abap_true
                                                 IMPORTING returncode    = DATA(rc) ).
-        CATCH cx_nr_object_not_found INTO DATA(ex_nro_not_found). " TODO: variable is assigned but never used (ABAP cleaner)
-        CATCH cx_number_ranges INTO DATA(ex_nro). " TODO: variable is assigned but never used (ABAP cleaner)
-
+        CATCH cx_nr_object_not_found INTO DATA(ex_nro_not_found).
+          DATA(text) = ex_nro_not_found->get_text( ).
+        CATCH cx_number_ranges INTO DATA(ex_nro).
+          text = ex_nro->get_text( ).
           " FILL FAILED AND REPORTED HERE
 
       ENDTRY.
