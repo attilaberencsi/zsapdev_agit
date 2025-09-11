@@ -25,8 +25,9 @@ CLASS zcl_sapdev_nro_check IMPLEMENTATION.
                                                         "length_check  = abap_true
                                               IMPORTING returncode    = DATA(rc) ).
       CATCH cx_nr_object_not_found INTO DATA(ex_nro_not_found). " TODO: variable is assigned but never used (ABAP cleaner)
+        DATA(text) = ex_nro_not_found->get_text( ).
       CATCH cx_number_ranges INTO DATA(ex_nro). " TODO: variable is assigned but never used (ABAP cleaner)
-
+        text = ex_nro->get_text( ).
         " Fill failed and reported
 
     ENDTRY.
@@ -37,7 +38,7 @@ CLASS zcl_sapdev_nro_check IMPLEMENTATION.
 
     out->write( data = rc ).
 
-   " Standard class doing this comparison: '00000000000000000001' < '000001'.
+    " Standard class doing this comparison: '00000000000000000001' < '000001'.
     IF my_number < range_low.
       out->write( 'good as CHAR but not as NUMC' ).
     ENDIF.
