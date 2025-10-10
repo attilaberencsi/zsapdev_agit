@@ -6,4 +6,4 @@
     - [Early Numbering: Header with external Number Range Check, Item numbering calculating next free sequence number, **Draft**](/src/zsapdev_rap_sample/zsapdev_rap_sample_3dp_en)
     - Internal Numbering with UUID, **Draft**,**OData v4**
     - Internal Numbering with UUID, **OData v2**
-    - [RAP Developer Extensibility](/src/zsapdev_rap_sample/ZSAPDEV_RAP_SAMPLE_SAP_EXT)
+    - [RAP Developer Extensibility](/src/zsapdev_rap_sample/zsapdev_rap_sample_sap_ext)
