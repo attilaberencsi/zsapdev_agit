@@ -3,39 +3,38 @@
  <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
   <asx:values>
    <BDEF>
-    <NAME>ZR_SHOPTP_B</NAME>
+    <NAME>ZC_SHOPTP_B_EXT</NAME>
     <TYPE>BDEF/BDO</TYPE>
-    <DESCRIPTION>Behavior for ZR_ShopTP_B</DESCRIPTION>
+    <DESCRIPTION>Extension of ZC_SHOPTP_B</DESCRIPTION>
     <DESCRIPTION_TEXT_LIMIT>60</DESCRIPTION_TEXT_LIMIT>
     <LANGUAGE>EN</LANGUAGE>
     <LINKS>
      <item>
-      <HREF>./zr_shoptp_b/source/main/versions</HREF>
+      <HREF>./zc_shoptp_b_ext/source/main/versions</HREF>
       <REL>http://www.sap.com/adt/relations/versions</REL>
       <TITLE>Historic versions</TITLE>
      </item>
      <item>
-      <HREF>./zr_shoptp_b/source/main</HREF>
+      <HREF>./zc_shoptp_b_ext/source/main</HREF>
       <REL>http://www.sap.com/adt/relations/source</REL>
       <TYPE>text/plain</TYPE>
       <TITLE>Source Content</TITLE>
      </item>
      <item>
-      <HREF>./zr_shoptp_b/source/main</HREF>
+      <HREF>./zc_shoptp_b_ext/source/main</HREF>
       <REL>http://www.sap.com/adt/relations/source</REL>
       <TYPE>text/html</TYPE>
       <TITLE>Source Content (HTML)</TITLE>
      </item>
      <item>
-      <HREF>./zr_shoptp_b/enhancement/elements</HREF>
-      <REL>http://www.sap.com/adt/relations/enhancements</REL>
-      <TYPE>application/vnd.sap.adt.elementinfo+xml</TYPE>
-      <TITLE>Enhancements</TITLE>
+      <HREF>/sap/bc/adt/bo/behaviordefinitions/zc_shoptp_b/source/main</HREF>
+      <REL>http://www.sap.com/adt/relations/navigation</REL>
+      <TITLE>base_bdef</TITLE>
      </item>
     </LINKS>
     <MASTER_LANGUAGE>EN</MASTER_LANGUAGE>
     <ABAP_LANGU_VERSION>5</ABAP_LANGU_VERSION>
-    <SOURCE_URI>./zr_shoptp_b/source/main</SOURCE_URI>
+    <SOURCE_URI>./zc_shoptp_b_ext/source/main</SOURCE_URI>
     <SOURCE_TYPE>ABAP_SOURCE</SOURCE_TYPE>
     <SOURCE_FIXED_POINT_ARITHMETIC>true</SOURCE_FIXED_POINT_ARITHMETIC>
     <SOURCE_UNICODE_CHECKS_ACTIVE>true</SOURCE_UNICODE_CHECKS_ACTIVE>

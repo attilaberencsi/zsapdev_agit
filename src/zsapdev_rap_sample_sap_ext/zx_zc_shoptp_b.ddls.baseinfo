@@ -3,13 +3,10 @@
 {
 "FROM":
 [
-"ZE_SHOP_B",
-"ZI_SHOP_B"
+"ZR_SHOPTP_B"
 ],
 "ASSOCIATED":
-[
-"ZE_SHOP_B"
-],
+[],
 "BASE":
 [],
 "ANNO_REF":

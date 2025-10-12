@@ -1,0 +1,11 @@
+@Metadata.layer: #CUSTOMER
+
+annotate entity ZC_ShopTP_B with
+
+{
+  @UI.dataFieldDefault: [ { hidden: false } ]
+  @UI.identification: [ { hidden: false } ]
+  @UI.lineItem: [ { hidden: false },
+                  { type: #FOR_ACTION, dataAction: 'ZZ_ProvideFeedback', label: 'Update Feedback' } ]
+  ZZFEEDBACKZAA;
+}

@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<abapGit version="v1.0.0" serializer="LCL_OBJECT_DDLS" serializer_version="v1.0.0">
+ <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
+  <asx:values>
+   <DDLS>
+    <DDLNAME>ZX_ZR_SHOPTP_B</DDLNAME>
+    <DDLANGUAGE>E</DDLANGUAGE>
+    <PARENTNAME>ZR_SHOPTP_B</PARENTNAME>
+    <DDTEXT>Extension for ZR_SHOPTP_B</DDTEXT>
+    <SOURCE_TYPE>X</SOURCE_TYPE>
+   </DDLS>
+  </asx:values>
+ </asx:abap>
+</abapGit>
