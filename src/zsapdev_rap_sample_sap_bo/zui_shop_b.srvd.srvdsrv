@@ -1,0 +1,5 @@
+@AbapCatalog.extensibility.extensible: true
+@ObjectModel.leadingEntity.name: 'ZC_ShopTP_B'
+define service ZUI_Shop_B {
+  expose ZC_SHOPTP_B as Shop;
+}
