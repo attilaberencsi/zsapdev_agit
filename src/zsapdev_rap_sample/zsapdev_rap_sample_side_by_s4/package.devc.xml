@@ -3,7 +3,7 @@
  <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
   <asx:values>
    <DEVC>
-    <CTEXT>BAS-RAP UI Service Generation #UI_PROVIDER_PROJECTION_SOURCE</CTEXT>
+    <CTEXT>S/4HANA Side By Side Extension on Steampunk</CTEXT>
     <LANGUAGE>E</LANGUAGE>
     <MASTERLANG>E</MASTERLANG>
    </DEVC>
