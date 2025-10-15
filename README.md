@@ -1,6 +1,6 @@
 # sapdev.eu - Reuse Libraries, Utilities and Samples
 
-- [RAP Utilities](/src/zsapdev_rap): managed draft handler base, including mandatory field validation
+- [RAP Utilities](/src/zsapdev_rap): managed draft handler base. Mandatory field validation is :warning: In progress :warning:, but available in onPremse-2023.
 - RAP sample applications utilizing the common handler
 - RAP Sample Applications
   - Managed
