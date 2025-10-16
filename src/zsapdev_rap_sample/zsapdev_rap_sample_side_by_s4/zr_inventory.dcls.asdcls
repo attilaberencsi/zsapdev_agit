@@ -1,0 +1,6 @@
+@EndUserText.label: 'ZR_INVENTORY'
+@MappingRole: true
+define role ZR_INVENTORY {
+  grant select on ZR_INVENTORY
+  where TRUE;
+}

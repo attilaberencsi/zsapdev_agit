@@ -1,0 +1,84 @@
+@Metadata.layer: #CORE
+
+@UI.headerInfo: { title: { type: #STANDARD, value: 'UUID' },
+                  description: { type: #STANDARD, value: 'UUID' } }
+
+annotate view ZC_INVENTORY with
+
+{
+  @EndUserText.label: 'UUID'
+  @UI.hidden: true
+  UUID;
+
+  @EndUserText.label: 'InventoryID'
+  @UI.facet: [ { label: 'General Information',
+                 id: 'GeneralInfo',
+                 purpose: #STANDARD,
+                 position: 10,
+                 type: #IDENTIFICATION_REFERENCE } ]
+  @UI.identification: [ { position: 20, label: 'InventoryID' } ]
+  @UI.lineItem: [ { position: 20, label: 'InventoryID' } ]
+  @UI.selectionField: [ { position: 20 } ]
+  InventoryID;
+
+  @EndUserText.label: 'ProductID'
+  @UI.identification: [ { position: 30, label: 'ProductID' } ]
+  @UI.lineItem: [ { position: 30, label: 'ProductID' } ]
+  @UI.selectionField: [ { position: 30 } ]
+  ProductID;
+
+  @EndUserText.label: 'Quantity'
+  @UI.identification: [ { position: 40, label: 'Quantity' } ]
+  @UI.lineItem: [ { position: 40, label: 'Quantity' } ]
+  @UI.selectionField: [ { position: 40 } ]
+  Quantity;
+
+  @EndUserText.label: 'Price'
+  @UI.identification: [ { position: 50, label: 'Price' } ]
+  @UI.lineItem: [ { position: 50, label: 'Price' } ]
+  @UI.selectionField: [ { position: 50 } ]
+  Price;
+
+  @EndUserText.label: 'Description'
+  @UI.identification: [ { position: 60, label: 'Description' } ]
+  @UI.lineItem: [ { position: 60, label: 'Description' } ]
+  @UI.selectionField: [ { position: 60 } ]
+  Description;
+
+  @EndUserText.label: 'OverallStatus'
+  @UI.identification: [ { position: 70, label: 'OverallStatus' } ]
+  @UI.lineItem: [ { position: 70, label: 'OverallStatus' } ]
+  @UI.selectionField: [ { position: 70 } ]
+  OverallStatus;
+
+  @UI.identification: [ { position: 80 } ]
+  @UI.lineItem: [ { position: 80 } ]
+  @UI.selectionField: [ { position: 80 } ]
+  LocalCreatedBy;
+
+  @UI.identification: [ { position: 90 } ]
+  @UI.lineItem: [ { position: 90 } ]
+  @UI.selectionField: [ { position: 90 } ]
+  LocalCreatedAt;
+
+  @UI.identification: [ { position: 100 } ]
+  @UI.lineItem: [ { position: 100 } ]
+  @UI.selectionField: [ { position: 100 } ]
+  LocalLastChangedBy;
+
+  @UI.identification: [ { position: 110 } ]
+  @UI.lineItem: [ { position: 110 } ]
+  @UI.selectionField: [ { position: 110 } ]
+  LocalLastChangedAt;
+
+  @UI.identification: [ { position: 120 } ]
+  @UI.lineItem: [ { position: 120 } ]
+  @UI.selectionField: [ { position: 120 } ]
+  LastChangedAt;
+
+  @EndUserText.label: '_BaseEntity'
+  @UI.identification: [ { position: 130, label: '_BaseEntity' } ]
+  @UI.lineItem: [ { position: 130, label: '_BaseEntity' } ]
+  @UI.selectionField: [ { position: 130 } ]
+  _BaseEntity;
+}

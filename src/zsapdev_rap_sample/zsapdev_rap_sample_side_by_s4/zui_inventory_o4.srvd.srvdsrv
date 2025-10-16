@@ -1,0 +1,13 @@
+@EndUserText: {
+  label: 'Service Definition for ZC_INVENTORY'
+}
+@ObjectModel: {
+  leadingEntity: {
+    name: 'ZC_INVENTORY'
+  }
+}
+define service ZUI_INVENTORY_O4
+  provider contracts odata_v4_ui {
+  expose ZC_INVENTORY       as Inventory;
+  expose ZCE_ProductClassif as Product;
+}
