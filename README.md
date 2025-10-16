@@ -7,5 +7,6 @@
     - [Early Numbering: Header with external Number Range Check, Item numbering calculating next free sequence number, **Draft**](/src/zsapdev_rap_sample/zsapdev_rap_sample_3dp_en)
     - Internal Numbering with UUID, **Draft**,**OData v4**
     - Internal Numbering with UUID, **OData v2**
-    - [RAP Developer Extensibility](src/zsapdev_rap_sample/zsapdev_rap_sample_sap_ext)
+    - [RAP Developer Extensibility](src/zsapdev_rap_sample/zsapdev_rap_sample_sap_ext) based on RAP630 including some more minor features
     - ![1760284314001](image/README/1760284314001.png)
+    - [Side-by-side extension](src/zsapdev_rap_sample/zsapdev_rap_sample_sap_side_by_s4) of S/4HANA Public Cloud on separate BTP ABAP Environment  **only in cloud Branch** (based on RAP620. includes Service Consumption Model and requires communication arrangement)
