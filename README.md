@@ -7,6 +7,5 @@
     - [Early Numbering: Header with external Number Range Check, Item numbering calculating next free sequence number, **Draft**](/src/zsapdev_rap_sample/zsapdev_rap_sample_3dp_en)
     - Internal Numbering with UUID, **Draft**,**OData v4**
     - Internal Numbering with UUID, **OData v2**
-    - RAP Developer Extensibility - **only in cloud Branch**
-   
-If You're interested in which format gCTS is backing up Software Components and Packages from Steampunk, You can check [this repo](https://github.com/attilaberencsi/zsapdev) out.
+    - RAP Developer Extensibility - **only in cloud Branch** (based on RAP630 including some more minor features)
+    - Side-by-side extension of S/4HANA Public Cloud on separate BTP ABAP Environment  **only in cloud Branch** (based on RAP620)
