@@ -8,3 +8,5 @@
     - Internal Numbering with UUID, **Draft**,**OData v4**
     - Internal Numbering with UUID, **OData v2**
     - RAP Developer Extensibility - **only in cloud Branch**
+   
+If You're interested in which format gCTS is backing up Software Components and Packages from Steampunk, You can check [this repo](https://github.com/attilaberencsi/zsapdev) out.
