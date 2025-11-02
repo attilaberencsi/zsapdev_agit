@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<abapGit version="v1.0.0" serializer="LCL_OBJECT_DOMA" serializer_version="v1.0.0">
+ <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
+  <asx:values>
+   <DD01V>
+    <DOMNAME>ZSAPDEV_3DP_MATTYPE</DOMNAME>
+    <DDLANGUAGE>E</DDLANGUAGE>
+    <DATATYPE>CHAR</DATATYPE>
+    <LENG>000010</LENG>
+    <OUTPUTLEN>000010</OUTPUTLEN>
+    <VALEXI>X</VALEXI>
+    <DDTEXT>Material Type</DDTEXT>
+    <DOMMASTER>E</DOMMASTER>
+   </DD01V>
+   <DD07V_TAB>
+    <DD07V>
+     <DOMNAME>ZSAPDEV_3DP_MATTYPE</DOMNAME>
+     <VALPOS>0001</VALPOS>
+     <DDLANGUAGE>E</DDLANGUAGE>
+     <DOMVALUE_L>FILAMENT</DOMVALUE_L>
+     <DDTEXT>Filament Consumables</DDTEXT>
+    </DD07V>
+    <DD07V>
+     <DOMNAME>ZSAPDEV_3DP_MATTYPE</DOMNAME>
+     <VALPOS>0002</VALPOS>
+     <DDLANGUAGE>E</DDLANGUAGE>
+     <DOMVALUE_L>RESIN</DOMVALUE_L>
+     <DDTEXT>Resin Consumables</DDTEXT>
+    </DD07V>
+    <DD07V>
+     <DOMNAME>ZSAPDEV_3DP_MATTYPE</DOMNAME>
+     <VALPOS>0003</VALPOS>
+     <DDLANGUAGE>E</DDLANGUAGE>
+     <DOMVALUE_L>SPARE</DOMVALUE_L>
+     <DDTEXT>	Spare Parts / Replacement Parts</DDTEXT>
+    </DD07V>
+    <DD07V>
+     <DOMNAME>ZSAPDEV_3DP_MATTYPE</DOMNAME>
+     <VALPOS>0004</VALPOS>
+     <DDLANGUAGE>E</DDLANGUAGE>
+     <DOMVALUE_L>TOOLS</DOMVALUE_L>
+     <DDTEXT>Tools (e.g., Nozzles, Wrenches)</DDTEXT>
+    </DD07V>
+    <DD07V>
+     <DOMNAME>ZSAPDEV_3DP_MATTYPE</DOMNAME>
+     <VALPOS>0005</VALPOS>
+     <DDLANGUAGE>E</DDLANGUAGE>
+     <DOMVALUE_L>ACCESSORY</DOMVALUE_L>
+     <DDTEXT>Accessories (e.g., Build Plates, Covers)</DDTEXT>
+    </DD07V>
+    <DD07V>
+     <DOMNAME>ZSAPDEV_3DP_MATTYPE</DOMNAME>
+     <VALPOS>0006</VALPOS>
+     <DDLANGUAGE>E</DDLANGUAGE>
+     <DOMVALUE_L>MAINTENANC</DOMVALUE_L>
+     <DDTEXT>Maintenance Supplies (Lubricants, Cleaning Materials)</DDTEXT>
+    </DD07V>
+    <DD07V>
+     <DOMNAME>ZSAPDEV_3DP_MATTYPE</DOMNAME>
+     <VALPOS>0007</VALPOS>
+     <DDLANGUAGE>E</DDLANGUAGE>
+     <DOMVALUE_L>ELECTRICAL</DOMVALUE_L>
+     <DDTEXT>Electrical Components (Boards, Sensors)</DDTEXT>
+    </DD07V>
+    <DD07V>
+     <DOMNAME>ZSAPDEV_3DP_MATTYPE</DOMNAME>
+     <VALPOS>0008</VALPOS>
+     <DDLANGUAGE>E</DDLANGUAGE>
+     <DOMVALUE_L>MECHANICAL</DOMVALUE_L>
+     <DDTEXT>Mechanical Parts (Belts, Motors, Gears)</DDTEXT>
+    </DD07V>
+    <DD07V>
+     <DOMNAME>ZSAPDEV_3DP_MATTYPE</DOMNAME>
+     <VALPOS>0009</VALPOS>
+     <DDLANGUAGE>E</DDLANGUAGE>
+     <DOMVALUE_L>SOFTWARE</DOMVALUE_L>
+     <DDTEXT>Firmware / Software Licenses</DDTEXT>
+    </DD07V>
+   </DD07V_TAB>
+  </asx:values>
+ </asx:abap>
+</abapGit>

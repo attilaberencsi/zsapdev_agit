@@ -11,7 +11,10 @@ CLASS zcl_sapdev_nro_check DEFINITION
 ENDCLASS.
 
 
-CLASS zcl_sapdev_nro_check IMPLEMENTATION.
+
+CLASS ZCL_SAPDEV_NRO_CHECK IMPLEMENTATION.
+
+
   METHOD if_oo_adt_classrun~main.
     DATA my_number TYPE c LENGTH 20 VALUE '00000000000000000001'.
     DATA range_low TYPE c LENGTH 6  VALUE '000001'.
