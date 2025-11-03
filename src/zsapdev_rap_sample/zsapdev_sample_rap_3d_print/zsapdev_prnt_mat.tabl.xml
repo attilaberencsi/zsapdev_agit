@@ -150,6 +150,12 @@
      <CARDLEFT>1</CARDLEFT>
     </DD08V>
    </DD08V_TABLE>
+   <TABL_EXTRAS>
+    <TDDAT>
+     <TABNAME>ZSAPDEV_PRNT_MAT</TABNAME>
+     <CCLASS>CUS_DEV_SUP_DA</CCLASS>
+    </TDDAT>
+   </TABL_EXTRAS>
   </asx:values>
  </asx:abap>
 </abapGit>

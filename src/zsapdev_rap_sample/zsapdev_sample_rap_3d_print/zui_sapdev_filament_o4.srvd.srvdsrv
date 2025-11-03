@@ -1,0 +1,11 @@
+@EndUserText: {
+  label: 'Service Definition for ZC_SAPDEV_Filament'
+}
+@ObjectModel: {
+  leadingEntity: {
+    name: 'ZC_SAPDEV_Filament'
+  }
+}
+define service ZUI_SAPDEV_FILAMENT_O4 provider contracts odata_v4_ui {
+  expose ZC_SAPDEV_FILAMENT as Filament;
+}

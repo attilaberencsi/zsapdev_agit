@@ -1,0 +1,6 @@
+@EndUserText.label: 'ZR_SAPDEV_Material'
+@MappingRole: true
+define role ZR_SAPDEV_Material {
+  grant select on ZR_SAPDEV_Material
+  where TRUE;
+}
