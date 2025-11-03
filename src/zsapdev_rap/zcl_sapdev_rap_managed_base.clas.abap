@@ -38,12 +38,23 @@ CLASS zcl_sapdev_rap_managed_base DEFINITION
                 i_instance    TYPE any
       CHANGING  c_path        TYPE any.
 
+    "! Retrieve next number from range
+    "! @parameter i_object       | Number Range Object
+    "! @parameter i_interval     | Interval Number
+    "! @parameter e_number       | Number
+    "! @parameter e_behv_message | Number
+    CLASS-METHODS get_number
+      IMPORTING i_object       TYPE cl_numberrange_runtime=>nr_object
+                i_interval     TYPE cl_numberrange_runtime=>nr_interval
+      EXPORTING e_number       TYPE cl_numberrange_runtime=>nr_number
+                e_behv_message TYPE REF TO if_abap_behv_message.
+
   PROTECTED SECTION.
     METHODS read_ancestor
       IMPORTING i_entity_name   TYPE abp_entity_name
                 i_instance_ref  TYPE REF TO data
                 i_ancestor_info TYPE csequence
-                "i_ancestor_info TYPE cl_abap_behvdescr=>t_pathnode
+                " i_ancestor_info TYPE cl_abap_behvdescr=>t_pathnode
       RETURNING VALUE(r_result) TYPE REF TO data.
 
 
@@ -52,7 +63,7 @@ ENDCLASS.
 
 
 
-CLASS ZCL_SAPDEV_RAP_MANAGED_BASE IMPLEMENTATION.
+CLASS zcl_sapdev_rap_managed_base IMPLEMENTATION.
 
 
   METHOD constructor.
@@ -380,4 +391,34 @@ CLASS ZCL_SAPDEV_RAP_MANAGED_BASE IMPLEMENTATION.
 *
 *    ENDLOOP.
   ENDMETHOD.
+
+  METHOD get_number.
+    TRY.
+        cl_numberrange_runtime=>number_get( EXPORTING nr_range_nr = i_interval
+                                                      object      = i_object
+                                            IMPORTING number      = e_number
+                                                      returncode  = DATA(rc) ).
+        CASE rc.
+          " RC= 1 is Ignored, business user is not interested of such in a popup !
+          WHEN '2'.
+            e_behv_message = NEW zcm_sapdev_rap( textid       = zcm_sapdev_rap=>nro_interval_ran_out
+                                                 severity     = if_abap_behv_message=>severity-information
+                                                 nro_object   = CONV #( i_object )
+                                                 nro_interval = CONV #( i_interval ) ).
+          WHEN OTHERS.
+            RETURN.
+        ENDCASE.
+
+      CATCH cx_nr_object_not_found INTO DATA(ex_object_not_found).
+        e_behv_message = NEW zcm_sapdev_rap( textid      = zcm_sapdev_rap=>nro_exception
+                                             previous    = ex_object_not_found
+                                             nro_message = CONV symsgv( ex_object_not_found->get_text( ) ) ).
+
+      CATCH cx_number_ranges INTO DATA(ex_nro).
+        e_behv_message = NEW zcm_sapdev_rap( textid      = zcm_sapdev_rap=>nro_exception
+                                             previous    = ex_nro
+                                             nro_message = CONV symsgv( ex_nro->get_text( ) ) ).
+    ENDTRY.
+  ENDMETHOD.
+
 ENDCLASS.

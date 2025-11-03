@@ -20,6 +20,24 @@
      <MSGNR>002</MSGNR>
      <TEXT>Field is mandatory</TEXT>
     </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZSAPDEV_RAP</ARBGB>
+     <MSGNR>003</MSGNR>
+     <TEXT>Number range error: &amp;1</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZSAPDEV_RAP</ARBGB>
+     <MSGNR>004</MSGNR>
+     <TEXT>Number Range Object &amp;1, Interval &amp;2 is running out of numbers</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZSAPDEV_RAP</ARBGB>
+     <MSGNR>005</MSGNR>
+     <TEXT>Number Range Object &amp;1, Interval &amp;2 ran out of numbers</TEXT>
+    </T100>
    </T100>
   </asx:values>
  </asx:abap>
