@@ -22,21 +22,21 @@ late numbering
   LocalLastChangedAt,
   LastChangedAt;
 
-
   create;
   update;
   delete;
 
-  validation check_prod_date on save { create; update; }
-  determination calc_temperature on modify { create; update; }
-  determination calc_prod_date on save { create; update; }
+  field ( mandatory ) BedTempMin, BedTempMax, PrintTempMin, PrintTempMax, Color, Diameter;
+
+  validation validate_mandatory_fields on save { create; update; }
 
   draft action Activate optimized;
   draft action Discard;
   draft action Edit;
   draft action Resume;
-  draft determine action Prepare {
-
+  draft determine action Prepare
+  {
+    validation validate_mandatory_fields;
   }
 
   mapping for zsapdev_filament corresponding extensible
