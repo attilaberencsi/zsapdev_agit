@@ -15,17 +15,16 @@ This repository contains reusable ABAP RAP (RESTful ABAP Programming) utilities,
 
 ## Core Components
 
-### RAP Utilities (`/src/zsapdev_rap`)
+### RAP Utilities (`zsapdev_rap`)
 
 A collection of reusable base classes and interfaces for managed RAP applications with draft handling.
 
 **Features:**
 
-- Managed draft handler base implementation
-- Common behavior definitions
-- Standardized error messaging (`zcm_sapdev_rap`)
+- Managed draft handler base implementation (`zcl_sapdev_rap_managed_base`)
 - Base interface for managed operations (`zif_sapdev_rap_managed_base`)
-- Base class implementation (`zcl_sapdev_rap_managed_base`)
+- Standardized error messaging (`zcm_sapdev_rap`) implements interface `if_abap_behv_message`
+- Admin structure include (`zsapdev_s_rap_admin`)
 
 **Status:**
 
@@ -38,16 +37,44 @@ A collection of reusable base classes and interfaces for managed RAP application
 
 All sample applications are located under `/src/zsapdev_rap_sample/` and demonstrate different RAP patterns and scenarios.
 
-### 1. 3D Printer Management - Early Numbering (`zsapdev_rap_sample_3dp_en`)
+### 1. 3D Printer Management - Draft (`zsapdev_rap_sample_3dp`)
+
+**Pattern:** Managed, Managed UUID Key, Draft
+
+**Key Features:**
+
+- Internal managed numbering with UUID
+- UUID converted to string to prevent Edm.Guid conversion by Gateway (`bintohex(entity_key) as EntityKeyChar`) to support data validation
+- Draft enabled
+- Full CRUD operations
+- Parent-child relationship (3D Printer ↔ Nozzle)
+- Admin data with user details
+- Unit of Measure Value Help
+
+**Components:**
+
+- OData V4 UI Service (`zsapdev_3dp_ui_o4`)
+
+**Frontend:**
+
+* Fiori Elements UI with ADT Preview
+
+**Path:** [`/src/zsapdev_rap_sample/zsapdev_rap_sample_3dp`](/src/zsapdev_rap_sample/zsapdev_rap_sample_3dp)
+
+---
+
+### 2. 3D Printer Management - Early Numbering (`zsapdev_rap_sample_3dp_en`)
 
 **Pattern:** Managed with Early Numbering & Draft
 
 **Key Features:**
 
+- **NOTE: use only NUMC20 domains in your data element when using number ranges. BTP ABAP Environment has a critical bug, and number range validation works wrong otherwise!**
 - Header with external Number Range Check
 - Item numbering with calculated next free sequence number
-- Draft enabled
 - Parent-child relationship (3D Printer ↔ Nozzle)
+- Admin data with user details
+- Unit of Measure Value Help
 
 **Components:**
 
@@ -56,43 +83,40 @@ All sample applications are located under `/src/zsapdev_rap_sample/` and demonst
 - Consumption Views: `zc_sapdev_3dprinter`, `zc_sapdev_nozzle`
 - Database Tables: `zsapdev_3dp_d`
 - Number Range Object: `z3dpen`
+- **External** Number range interval defined in F4290 Fiori application
+  ![1762621587731](image/README/1762621587731.png)
+- OData V4 UI Service (`ZSAPDEV_3DP_EN_UI_O4`)
+
+**Frontend:**
+
+* Fiori Elements UI with ADT Preview
 
 **Path:** [`/src/zsapdev_rap_sample/zsapdev_rap_sample_3dp_en`](/src/zsapdev_rap_sample/zsapdev_rap_sample_3dp_en)
 
 ---
 
-### 2. 3D Printer Management - No Draft (`zsapdev_rap_sample_3dp_nd`)
+### 3. 3D Printer Management - No Draft (`zsapdev_rap_sample_3dp_nd`)
 
-**Pattern:** Managed without Draft
-
-**Key Features:**
-
-- Similar to 3dp_en but without draft functionality
-- Direct database updates
-- Simplified transactional handling
-
-**Path:** [`/src/zsapdev_rap_sample/zsapdev_rap_sample_3dp_nd`](/src/zsapdev_rap_sample/zsapdev_rap_sample_3dp_nd)
-
----
-
-### 3. 3D Printer Management - Standard (`zsapdev_rap_sample_3dp`)
-
-**Pattern:** Managed with UUID & Draft
+**Pattern:** Managed, Managed UUID Key, Draft
 
 **Key Features:**
 
-- Internal numbering with UUID
-- Draft enabled
-- OData V4 service
-- Full CRUD operations
+- managed UUID keys
+- UUID converted to string to prevent Edm.Guid conversion by Gateway (`bintohex(entity_key) as EntityKeyChar`) to support data validation
+- for OData v2 consumption
+- Parent-child relationship (3D Printer ↔ Nozzle)
+- Admin data with user details
+- Unit of Measure Value Help
 
 **Components:**
 
-- Fiori Elements UI with metadata extensions
-- OData V4  UI Service (`zsapdev_3dp_ui_o4`)
-- Service bindings
+- OData V2 UI Service (`ZSAPDEV_3DP_UI_O2`)
 
-**Path:** [`/src/zsapdev_rap_sample/zsapdev_rap_sample_3dp`](/src/zsapdev_rap_sample/zsapdev_rap_sample_3dp)
+**Frontend:**
+
+* Fiori Elements UI with ADT Preview
+
+**Path:** [`/src/zsapdev_rap_sample/zsapdev_rap_sample_3dp_nd`](/src/zsapdev_rap_sample/zsapdev_rap_sample_3dp_nd)
 
 ---
 
@@ -106,7 +130,7 @@ All sample applications are located under `/src/zsapdev_rap_sample/` and demonst
 
 **Path:** [`/src/zsapdev_rap_sample/zsapdev_rap_sample_sap_bo`](/src/zsapdev_rap_sample/zsapdev_rap_sample_sap_bo)
 
-### 5. RAP Developer Extensibility (`zsapdev_rap_sample_sap_ext`)
+### 5. RAP Developer Extensibility Provider (`zsapdev_rap_sample_sap_ext`)
 
 **Pattern:** Developer Extensibility
 
