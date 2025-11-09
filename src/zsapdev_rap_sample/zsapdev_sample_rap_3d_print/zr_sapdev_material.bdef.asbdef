@@ -2,16 +2,16 @@ managed implementation in class ZBP_R_SAPDEV_Material unique;
 strict ( 2 );
 with draft;
 extensible;
-define behavior for ZR_SAPDEV_Material alias ZrSapdevMaterial
+define behavior for ZR_SAPDEV_Material alias Material
 persistent table ZSAPDEV_MATERIAL
 extensible
 draft table ZSAPDEV_MTRIAL_D
 etag master LocalLastChangedAt
 lock master total etag LastChangedAt
 authorization master( global )
+late numbering
 {
-  field ( mandatory : create )
-   MaterialID;
+  field ( readonly ) MaterialID;
 
   field ( readonly )
    LocalCreatedBy,
@@ -19,10 +19,6 @@ authorization master( global )
    LocalLastChangedBy,
    LocalLastChangedAt,
    LastChangedAt;
-
-  field ( readonly : update )
-   MaterialID;
-
 
   create;
   update;
