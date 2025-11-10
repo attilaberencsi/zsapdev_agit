@@ -6,21 +6,24 @@ This repository contains reusable ABAP RAP (RESTful ABAP Programming) utilities,
 
 ## 📚 Table of Contents
 
-- [Core Components](#core-components)
-  - [RAP Utilities (`zsapdev_rap`)](#rap-utilities-zsapdev_rap)
-- [Sample Applications](#sample-applications)
-  - [3D Printer Management - Draft (`zsapdev_rap_sample_3dp`)](#3d-printer-management---draft-zsapdev_rap_sample_3dp)
-  - [3D Printer Management - Early Numbering (`zsapdev_rap_sample_3dp_en`)](#3d-printer-management---early-numbering-zsapdev_rap_sample_3dp_en)
-  - [3D Printer Management - No Draft (`zsapdev_rap_sample_3dp_nd`)](#3d-printer-management---no-draft-zsapdev_rap_sample_3dp_nd)
-  - [RAP Extensibility Enablement (`zsapdev_rap_sample_sap_bo`)](#rap-extensibility-enablement-zsapdev_rap_sample_sap_bo)
-  - [RAP Developer Extensibility Provider (`zsapdev_rap_sample_sap_ext`)](#rap-developer-extensibility-provider-zsapdev_rap_sample_sap_ext)
-  - [Side-by-Side Extension (`zsapdev_rap_sample_side_by_s4`)](#side-by-side-extension-zsapdev_rap_sample_side_by_s4)
-  - [Exchange Rate Sample (`zsapdev_rap_sample_exrate`)](#exchange-rate-sample-zsapdev_rap_sample_exrate)
-  - [Code Generation Sample (`zsapdev_rap_sample_codegen`)](#code-generation-sample-zsapdev_rap_sample_codegen)
-- [Branch Information](#branch-information)
-- [Getting Started](#getting-started)
-  - [Prerequisites](#prerequisites)
-  - [Installation](#installation)
+- [sapdev.eu - ABAP RAP Reuse Libraries, Utilities and Samples](#sapdeveu---abap-rap-reuse-libraries-utilities-and-samples)
+  - [Overview](#overview)
+  - [📚 Table of Contents](#-table-of-contents)
+  - [Core Components](#core-components)
+    - [RAP Utilities (`zsapdev_rap`)](#rap-utilities-zsapdev_rap)
+  - [Sample Applications](#sample-applications)
+    - [3D Printer Management - Draft (`zsapdev_rap_sample_3dp`)](#3d-printer-management---draft-zsapdev_rap_sample_3dp)
+    - [3D Printer Management - Early Numbering (`zsapdev_rap_sample_3dp_en`)](#3d-printer-management---early-numbering-zsapdev_rap_sample_3dp_en)
+    - [3D Printer Management - No Draft (`zsapdev_rap_sample_3dp_nd`)](#3d-printer-management---no-draft-zsapdev_rap_sample_3dp_nd)
+    - [RAP Extensibility Enablement (`zsapdev_rap_sample_sap_bo`)](#rap-extensibility-enablement-zsapdev_rap_sample_sap_bo)
+    - [RAP Developer Extensibility Provider (`zsapdev_rap_sample_sap_ext`)](#rap-developer-extensibility-provider-zsapdev_rap_sample_sap_ext)
+    - [Side-by-Side Extension (`zsapdev_rap_sample_side_by_s4`)](#side-by-side-extension-zsapdev_rap_sample_side_by_s4)
+    - [Exchange Rate Sample (`zsapdev_rap_sample_exrate`)](#exchange-rate-sample-zsapdev_rap_sample_exrate)
+    - [Code Generation Sample (`zsapdev_rap_sample_codegen`)](#code-generation-sample-zsapdev_rap_sample_codegen)
+  - [Branch Information](#branch-information)
+  - [Getting Started](#getting-started)
+    - [Prerequisites](#prerequisites)
+    - [Installation](#installation)
 
 ---
 
@@ -141,7 +144,8 @@ Demonstrates syntax and data modeling approach to enable extensibility of DB, CD
 **Key Features:**
 
 * Based on SAP RAP630 course materials
-* DB
+* [SAP Help](https://help.sap.com/docs/abap-cloud/abap-rap/extend?locale=en-US&version=LATEST)
+* DB Table with enhancement category and extension include structure
 
   ```
   ...
@@ -149,6 +153,19 @@ Demonstrates syntax and data modeling approach to enable extensibility of DB, CD
   @AbapCatalog.enhancement.category : #EXTENSIBLE_ANY
   define table zsapdev_ashop {
   ...
+  include zsshop_b;
+  ```
+* Extension include structure with dummy field. Can be appended during extensions to add new fields
+
+  ```
+  @EndUserText.label : 'Extension include for Shop'
+  @AbapCatalog.enhancement.category : #EXTENSIBLE_ANY
+  @AbapCatalog.enhancement.fieldSuffix : 'ZAA'
+  @AbapCatalog.enhancement.quotaMaximumFields : 500
+  @AbapCatalog.enhancement.quotaMaximumBytes : 8160
+  define structure zsshop_b {
+    dummy_field : abap.char(1);
+  }
   ```
 * CDS: R/I/C
 
@@ -199,7 +216,9 @@ Demonstrates syntax and data modeling approach to enable extensibility of DB, CD
 
 ### RAP Developer Extensibility Provider (`zsapdev_rap_sample_sap_ext`)
 
-**Pattern:** Developer Extensibility
+Demonstrates how to extend a RAP BO which is enabled for it, see [RAP Extensibility Enablement (`zsapdev_rap_sample_sap_bo`)](#rap-extensibility-enablement-zsapdev_rap_sample_sap_bo). Behavior extension results in a separate behavior, which is the merged with the extended BO at runtime.
+
+**Pattern:** Managed, Managed UUID Key, Draft
 
 **Key Features:**
 
@@ -210,7 +229,20 @@ Demonstrates syntax and data modeling approach to enable extensibility of DB, CD
 
 **Path:** [`/src/zsapdev_rap_sample/zsapdev_rap_sample_sap_ext`](/src/zsapdev_rap_sample/zsapdev_rap_sample_sap_ext)
 
+**Components**
+
 ![3D Printer UI](https://file+.vscode-resource.vscode-cdn.net/d%3A/Workspaces/GitHub/attilaberencsi/zsapdev_agit/image/README/1760284314001.png)
+
+**RAP Naming Conventions**
+
+* **Extensible BO**
+  * **A_** for the persistent database table, the table that contains the active data.
+  * **D_** for the draft database table
+  * **I_** Basic interface entity: selects from active DB Table (A_) 1-1 mapping to table fields
+  * **R_<>TP** for the restriced base CDS entity: selects from basic interface entity (I_)
+  * **I_<>TP** transactional (processing) interface entity: selects from base entity (R_). This is the stable interface definition and forms a released stable API.
+  * **C_** for a projection entity. The character C represents the consumption layer. If there are multiple projections of one CDS entity, the object name should semantically represent the projection role.
+  * **E_** for an extension include entity
 
 ---
 
