@@ -1,5 +1,5 @@
 @ObjectModel.query.implementedBy: 'ABAP:ZCL_VH_PRODUCT_B'
-@EndUserText.label: 'Value help for products'
+@EndUserText.label: 'Value help for Products'
 define custom entity ZVH_PRODUCT_B
 {
   key Product      : abap.char( 40 );

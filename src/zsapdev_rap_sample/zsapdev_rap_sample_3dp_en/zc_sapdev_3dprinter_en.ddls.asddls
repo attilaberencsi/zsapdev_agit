@@ -28,4 +28,5 @@ define root view entity ZC_SAPDEV_3DPrinter_EN
       LastChangedAt,
 
       _Nozzles : redirected to composition child ZC_SAPDEV_Nozzle_EN
+
 }

@@ -1,38 +1,38 @@
 @AccessControl.authorizationCheck: #NOT_REQUIRED
-@EndUserText.label: 'Draft query view forShop'
+@EndUserText.label: 'Draft query view for Web Order'
 @AbapCatalog.viewEnhancementCategory: [ #PROJECTION_LIST ]
 @AbapCatalog.extensibility: {
-  extensible: true, 
-  elementSuffix: 'ZAA', 
-  allowNewDatasources: false, 
-  allowNewCompositions: false, 
-  dataSources: [ 'Shop' ], 
+  extensible: true,
+  elementSuffix: 'ZAA',
+  allowNewDatasources: false,
+  allowNewCompositions: false,
+  dataSources: [ 'Shop' ],
   quota: {
-    maximumFields: 100 , 
-    maximumBytes: 10000 
+    maximumFields: 100 ,
+    maximumBytes: 10000
   }
 }
 define view entity ZR_Shop_D_B
-  as select from ZSHOP00D_B as Shop
+  as select from zshop00d_b as Shop
 {
-  key OrderUUID as OrderUUID,
-  OrderID as OrderID,
-  OrderedItem as OrderedItem,
-  CurrencyCode as CurrencyCode,
-  OrderItemPrice as OrderItemPrice,
-  DeliveryDate as DeliveryDate,
-  OverallStatus as OverallStatus,
-  Notes as Notes,
-  LastChangedAt as LastChangedAt,
-  CreatedBy as CreatedBy,
-  CreatedAt as CreatedAt,
-  LocalLastChangedBy as LocalLastChangedBy,
-  LastChangedBy as LastChangedBy,
-  LocalLastChangedAt as LocalLastChangedAt,
-  draftentitycreationdatetime as Draftentitycreationdatetime,
-  draftentitylastchangedatetime as Draftentitylastchangedatetime,
-  draftadministrativedatauuid as Draftadministrativedatauuid,
-  draftentityoperationcode as Draftentityoperationcode,
-  hasactiveentity as Hasactiveentity,
-  draftfieldchanges as Draftfieldchanges
+  key orderuuid                     as OrderUUID,
+      orderid                       as OrderID,
+      ordereditem                   as OrderedItem,
+      currencycode                  as CurrencyCode,
+      orderitemprice                as OrderItemPrice,
+      deliverydate                  as DeliveryDate,
+      overallstatus                 as OverallStatus,
+      notes                         as Notes,
+      lastchangedat                 as LastChangedAt,
+      createdby                     as CreatedBy,
+      createdat                     as CreatedAt,
+      locallastchangedby            as LocalLastChangedBy,
+      lastchangedby                 as LastChangedBy,
+      locallastchangedat            as LocalLastChangedAt,
+      draftentitycreationdatetime   as Draftentitycreationdatetime,
+      draftentitylastchangedatetime as Draftentitylastchangedatetime,
+      draftadministrativedatauuid   as Draftadministrativedatauuid,
+      draftentityoperationcode      as Draftentityoperationcode,
+      hasactiveentity               as Hasactiveentity,
+      draftfieldchanges             as Draftfieldchanges
 }

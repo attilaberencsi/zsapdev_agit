@@ -71,7 +71,8 @@ early numbering
 
   validation validate_mandatory_fields on save { create; update; }
 
-  association _Printer;
+  association _Printer { with draft;}
+
 
   mapping for zsapdev_nozz_en
     {
