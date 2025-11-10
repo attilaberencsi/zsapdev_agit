@@ -33,4 +33,6 @@ define view entity ZC_SAPDEV_Nozzle_EN
       LastChangedAt,
 
       _Printer : redirected to parent ZC_SAPDEV_3DPrinter_EN
+
+
 }

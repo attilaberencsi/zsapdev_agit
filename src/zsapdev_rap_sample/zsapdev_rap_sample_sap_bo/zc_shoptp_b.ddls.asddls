@@ -1,6 +1,6 @@
 @AccessControl.authorizationCheck: #CHECK
 @Metadata.allowExtensions: true
-@EndUserText.label: 'Projection View forShop'
+@EndUserText.label: 'Web Order'
 @AbapCatalog.extensibility: {
   extensible: true,
   elementSuffix: 'ZAA',
