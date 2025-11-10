@@ -6,10 +6,24 @@ This repository contains reusable ABAP RAP (RESTful ABAP Programming) utilities,
 
 ## 📚 Table of Contents
 
-- [Core Components](#core-components)
-- [Sample Applications](#sample-applications)
-- [Branch Information](#branch-information)
-- [Getting Started](#getting-started)
+- [sapdev.eu - ABAP RAP Reuse Libraries, Utilities and Samples](#sapdeveu---abap-rap-reuse-libraries-utilities-and-samples)
+  - [Overview](#overview)
+  - [📚 Table of Contents](#-table-of-contents)
+  - [Core Components](#core-components)
+    - [RAP Utilities (`zsapdev_rap`)](#rap-utilities-zsapdev_rap)
+  - [Sample Applications](#sample-applications)
+    - [3D Printer Management - Draft (`zsapdev_rap_sample_3dp`)](#3d-printer-management---draft-zsapdev_rap_sample_3dp)
+    - [3D Printer Management - Early Numbering (`zsapdev_rap_sample_3dp_en`)](#3d-printer-management---early-numbering-zsapdev_rap_sample_3dp_en)
+    - [3D Printer Management - No Draft (`zsapdev_rap_sample_3dp_nd`)](#3d-printer-management---no-draft-zsapdev_rap_sample_3dp_nd)
+    - [RAP Extensibility Enablement (`zsapdev_rap_sample_sap_bo`)](#rap-extensibility-enablement-zsapdev_rap_sample_sap_bo)
+    - [RAP Developer Extensibility Provider (`zsapdev_rap_sample_sap_ext`)](#rap-developer-extensibility-provider-zsapdev_rap_sample_sap_ext)
+    - [Side-by-Side Extension (`zsapdev_rap_sample_side_by_s4`)](#side-by-side-extension-zsapdev_rap_sample_side_by_s4)
+    - [Exchange Rate Sample (`zsapdev_rap_sample_exrate`)](#exchange-rate-sample-zsapdev_rap_sample_exrate)
+    - [Code Generation Sample (`zsapdev_rap_sample_codegen`)](#code-generation-sample-zsapdev_rap_sample_codegen)
+  - [Branch Information](#branch-information)
+  - [Getting Started](#getting-started)
+    - [Prerequisites](#prerequisites)
+    - [Installation](#installation)
 
 ---
 
@@ -30,6 +44,7 @@ A collection of reusable base classes and interfaces for managed RAP application
 
 - ✅ Draft handling: Available
 - ⚠️ Mandatory field validation: In progress (available in `onPrem-2023` branch)
+  [Developer Guide](https://www.sapdev.eu/rap-painless-mandatory-field-validation/) for mandatory field validation.
 
 ---
 
@@ -37,7 +52,7 @@ A collection of reusable base classes and interfaces for managed RAP application
 
 All sample applications are located under `/src/zsapdev_rap_sample/` and demonstrate different RAP patterns and scenarios.
 
-### 1. 3D Printer Management - Draft (`zsapdev_rap_sample_3dp`)
+### 3D Printer Management - Draft (`zsapdev_rap_sample_3dp`)
 
 **Pattern:** Managed, Managed UUID Key, Draft
 
@@ -63,7 +78,7 @@ All sample applications are located under `/src/zsapdev_rap_sample/` and demonst
 
 ---
 
-### 2. 3D Printer Management - Early Numbering (`zsapdev_rap_sample_3dp_en`)
+### 3D Printer Management - Early Numbering (`zsapdev_rap_sample_3dp_en`)
 
 **Pattern:** Managed with Early Numbering & Draft
 
@@ -95,7 +110,7 @@ All sample applications are located under `/src/zsapdev_rap_sample/` and demonst
 
 ---
 
-### 3. 3D Printer Management - No Draft (`zsapdev_rap_sample_3dp_nd`)
+### 3D Printer Management - No Draft (`zsapdev_rap_sample_3dp_nd`)
 
 **Pattern:** Managed, Managed UUID Key, Draft
 
@@ -120,17 +135,72 @@ All sample applications are located under `/src/zsapdev_rap_sample/` and demonst
 
 ---
 
-### 4. RAP Extensibility Enablement (`zsapdev_rap_sample_sap_bo`)
+### RAP Extensibility Enablement (`zsapdev_rap_sample_sap_bo`)
+
+Demonstrates syntax and data modeling approach to enable extensibility of DB, CDS, RAP Behavior and Service, so covering all the layers.
+
+**Pattern:** Managed, Managed UUID Key, Draft
 
 **Key Features:**
 
-* Syntax to enable extensibility starting down from DB layer going upper
+* Based on SAP RAP630 course materials
+* DB
 
-**Pattern:** Managed with UUID & Draft
+  ```
+  ...
+  @EndUserText.label : ' Web Order'
+  @AbapCatalog.enhancement.category : #EXTENSIBLE_ANY
+  define table zsapdev_ashop {
+  ...
+  ```
+* CDS: R/I/C
+
+  ```
+  ...
+  @AbapCatalog.extensibility: {
+    extensible: true, 
+    elementSuffix: 'ZAA', 
+    allowNewDatasources: false, 
+    allowNewCompositions: true, 
+    dataSources: [ '_Extension' ], 
+    quota: {
+      maximumFields: 100 , 
+      maximumBytes: 10000 
+    }
+  }
+  define root view entity...
+  ```
+* Behavior
+
+  ```
+  managed;
+  strict ( 2 );
+  with draft;
+  extensible
+  {
+    with additional save;
+    with determinations on modify;
+    with determinations on save;
+    with validations on save;
+  }
+  define behavior for ZR_ShopTP_B alias Shop
+  implementation in class ZBP_R_ShopTP_B unique
+  persistent table ZSAPDEV_ASHOP
+  extensible
+  ....
+  draft determine action Prepare extensible;
+  ...
+  mapping for ZSAPDEV_ASHOP corresponding extensible {
+  ...
+  }
+  ...
+  ```
+* Servive definition
+  `@AbapCatalog.extensibility.extensible: true`
 
 **Path:** [`/src/zsapdev_rap_sample/zsapdev_rap_sample_sap_bo`](/src/zsapdev_rap_sample/zsapdev_rap_sample_sap_bo)
 
-### 5. RAP Developer Extensibility Provider (`zsapdev_rap_sample_sap_ext`)
+### RAP Developer Extensibility Provider (`zsapdev_rap_sample_sap_ext`)
 
 **Pattern:** Developer Extensibility
 
@@ -147,7 +217,7 @@ All sample applications are located under `/src/zsapdev_rap_sample/` and demonst
 
 ---
 
-### 6. Side-by-Side Extension (`zsapdev_rap_sample_side_by_s4`)
+### Side-by-Side Extension (`zsapdev_rap_sample_side_by_s4`)
 
 **Pattern:** Side-by-Side Extension with S/4HANA Cloud
 
@@ -175,7 +245,7 @@ All sample applications are located under `/src/zsapdev_rap_sample/` and demonst
 
 ---
 
-### 7. Exchange Rate Sample (`zsapdev_rap_sample_exrate`)
+### Exchange Rate Sample (`zsapdev_rap_sample_exrate`)
 
 **Pattern:** External API Integration
 
@@ -185,7 +255,7 @@ All sample applications are located under `/src/zsapdev_rap_sample/` and demonst
 
 ---
 
-### 8. Code Generation Sample (`zsapdev_rap_sample_codegen`)
+### Code Generation Sample (`zsapdev_rap_sample_codegen`)
 
 **Pattern:** BAS-RAP UI Service Generation #UI_PROVIDER_PROJECTION_SOURCE
 
