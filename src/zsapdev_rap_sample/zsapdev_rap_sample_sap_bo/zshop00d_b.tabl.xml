@@ -158,7 +158,7 @@
      <ADMINFIELD>0</ADMINFIELD>
      <PRECFIELD>ZSSHOP_B</PRECFIELD>
      <MASK>      S</MASK>
-     <DDTEXT>Extension include for Shop</DDTEXT>
+     <DDTEXT>Extension include for Web Order</DDTEXT>
      <COMPTYPE>S</COMPTYPE>
     </DD03P>
    </DD03P_TABLE>

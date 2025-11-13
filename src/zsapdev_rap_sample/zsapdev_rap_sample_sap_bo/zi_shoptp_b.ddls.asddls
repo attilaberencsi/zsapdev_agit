@@ -1,5 +1,5 @@
 @AccessControl.authorizationCheck: #CHECK
-@EndUserText.label: 'Projection View for Web Order'
+@EndUserText.label: 'Tx.Interface View for Web Order'
 @AbapCatalog.extensibility: {
   extensible: true,
   elementSuffix: 'ZAA',

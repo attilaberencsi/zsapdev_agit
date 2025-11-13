@@ -8,7 +8,7 @@
     <TABCLASS>TRANSP</TABCLASS>
     <CLIDEP>X</CLIDEP>
     <LANGDEP>X</LANGDEP>
-    <DDTEXT> Table for entity ZR_ShopTP_B</DDTEXT>
+    <DDTEXT> Web Order</DDTEXT>
     <MASTERLANG>E</MASTERLANG>
     <MAINFLAG>N</MAINFLAG>
     <CONTFLAG>A</CONTFLAG>
@@ -149,7 +149,7 @@
      <ADMINFIELD>0</ADMINFIELD>
      <PRECFIELD>ZSSHOP_B</PRECFIELD>
      <MASK>      S</MASK>
-     <DDTEXT>Extension include for Shop</DDTEXT>
+     <DDTEXT>Extension include for Web Order</DDTEXT>
      <COMPTYPE>S</COMPTYPE>
     </DD03P>
    </DD03P_TABLE>
