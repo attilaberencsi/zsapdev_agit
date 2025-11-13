@@ -182,7 +182,8 @@ Demonstrates syntax and data modeling approach to enable extensibility of DB, CD
       maximumBytes: 10000 
     }
   }
-  define root view entity...
+  define (root) view entity...
+  association [1] to E_entity as _Extension on $projection.key = _Extension.key
   ```
 * Behavior
 
@@ -216,7 +217,7 @@ Demonstrates syntax and data modeling approach to enable extensibility of DB, CD
 
 ### RAP Developer Extensibility Provider (`zsapdev_rap_sample_sap_ext`)
 
-Demonstrates how to extend a RAP BO which is enabled for it, see [RAP Extensibility Enablement (`zsapdev_rap_sample_sap_bo`)](#rap-extensibility-enablement-zsapdev_rap_sample_sap_bo). Behavior extension results in a separate behavior, which is the merged with the extended BO at runtime.
+Demonstrates how to extend a RAP BO enabled for that. See [RAP Extensibility Enablement (`zsapdev_rap_sample_sap_bo`)](#rap-extensibility-enablement-zsapdev_rap_sample_sap_bo). Behavior extension results in a separate behavior, which is the merged with the extended BO at runtime.
 
 **Pattern:** Managed, Managed UUID Key, Draft
 
@@ -236,15 +237,27 @@ Demonstrates how to extend a RAP BO which is enabled for it, see [RAP Extensibil
 **RAP Naming Conventions**
 
 * **Extensible BO**
-  * **A_** for the persistent database table, the table that contains the active data.
-  * **D_** for the draft database table
-  * **I_** Basic interface entity: selects from active DB Table (A_) 1-1 mapping to table fields
-  * **R_<>TP** for the restriced base CDS entity: selects from basic interface entity (I_)
-  * **I_<>TP** transactional (processing) interface entity: selects from base entity (R_). This is the stable interface definition and forms a released stable API.
-  * **C_** for a projection entity. The character C represents the consumption layer. If there are multiple projections of one CDS entity, the object name should semantically represent the projection role.
-  * **E_** for an extension include entity
 
----
+  * **A** - Active DB table
+  * **D** - Draft DB table
+  * **I_`<name>`**  - Basic interface view entity: selects from active DB Table (A). 1-1 mapping to table fields. Fields with postfixes according to [VDM Naming conventions](https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/ee6ff9b281d8448f96b4fe6c89f2bdc8/8a8cee943ef944fe8936f4cc60ba9bc1.html?locale=en-US&version=LATEST).
+  * **R_`<name>`TP** - restriced base CDS view entity: selects from basic interface entity (I_)
+  * **I_`<name>`TP** - transactional (processing) interface entity: selects from base entity (R_). This is the stable interface definition and forms a released stable API.
+    `provider contract transactional_interface as projection on`
+  * **C_`<name>TP`** for a projection entity. The character C represents the consumption layer. If there are multiple projections of one CDS entity, the object name should semantically represent the projection role.
+    `provider contract transactional_query as projection on`
+  * **E_** - extension include view entity: contains key fields.
+  * Behavior Definitions
+
+    - R_ - base entity
+    - C_ - `projection;`
+    - I_ - `interface;`
+* **BO Extension**
+
+  * **X_** - view entity extenions in all layers
+  * Behavior definition
+    * R_`<Name>`TP_EXT - `extension using interface` I_`<name>`TP.  Note: Extension is **R** but using interface **I**
+    * C_`<Name>`TP_EXT - `extension for projection;`
 
 ### Side-by-Side Extension (`zsapdev_rap_sample_side_by_s4`)
 
