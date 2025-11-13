@@ -287,9 +287,9 @@ Demonstrates how to extend a RAP BO enabled for that. See [RAP Extensibility Ena
     * R_`<Name>`TP_EXT - `extension using interface` I_`<name>`TP.  Note: **R** Extension is using interface **I_`<name>`TP**
     * C_`<Name>`TP_EXT - `extension for projection;`
 
-### Side-by-Side Extension (`zsapdev_rap_sample_side_by_s4`)
+### S/4HANA Side-by-Side Extension (`zsapdev_rap_sample_side_by_s4`)
 
-**Pattern:** Side-by-Side Extension with S/4HANA Cloud
+**Pattern:** Side-by-Side Extension of S/4HANA Cloud on BTP ABAP Environment
 
 ⚠️ **Available only in `cloud` branch**
 
@@ -304,7 +304,8 @@ Demonstrates how to extend a RAP BO enabled for that. See [RAP Extensibility Ena
   ```
 - HTTP Client: `cl_web_http_client_manager`
 - OData Client Proxy: `/iwbep/if_cp_client_proxy`
-- Service Consumption Model integration
+- Service Consumption Model (SRVC)
+- Generated Service Consumption Model class on BTP ABAP Environment based on the uploaded EDMX file of the Puiblic Remote API of S/4HANA Cloud
 - Communication Arrangement configuration required
 - Cloud-to-Cloud integration pattern
 
@@ -323,6 +324,8 @@ Demonstrates how to extend a RAP BO enabled for that. See [RAP Extensibility Ena
 ---
 
 ### Code Generation Sample (`zsapdev_rap_sample_codegen`)
+
+⚠️ **Available only in `cloud` branch**
 
 Use Business Application Studio to generate a RAP UI Service. [Developer Guide with Step-by-step instructions](https://www.sapdev.eu/create-abap-cloud-ui-service-with-business-application-studio-using-rap-bo-interface/).
 
