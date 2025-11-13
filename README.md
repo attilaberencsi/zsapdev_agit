@@ -1,9 +1,5 @@
 # sapdev.eu - ABAP RAP Reuse Libraries, Utilities and Samples
 
-## Overview
-
-This repository contains reusable ABAP RAP (RESTful ABAP Programming) utilities, base classes, and comprehensive sample applications demonstrating various RAP patterns and scenarios.
-
 ## 📚 Table of Contents
 
 - [sapdev.eu - ABAP RAP Reuse Libraries, Utilities and Samples](#sapdeveu---abap-rap-reuse-libraries-utilities-and-samples)
@@ -26,6 +22,37 @@ This repository contains reusable ABAP RAP (RESTful ABAP Programming) utilities,
     - [Installation](#installation)
 
 ---
+
+## Overview
+
+This repository contains reusable ABAP RAP (RESTful ABAP Programming) utilities, base classes, and comprehensive sample applications demonstrating various RAP patterns and scenarios.
+
+## Getting Started
+
+### Prerequisites
+
+- ABAP Development Tools (ADT) in Eclipse
+
+### Branch Installation
+
+* Using abapGit (onPremise / BTP ABAP Environment)
+  * Clone this repository to your system into package ZSAPDEV, use the corresponding branch
+* Using Software Components (gCTS) on BTP ABAP Environment
+  * cloud branch only
+  * copy this repository manually to your own repository, or fork it: [https://github.com/attilaberencsi/zsapdev](https://github.com/attilaberencsi/zsapdev) but do not push back anything to my repo from your fork ⚠️
+  * Using the Manage Software Component (F3562) Fiori Application, create a GitHub based Component / Package ZSAPDEV
+    ![1763052504182](image/README/1763052504182.png)
+
+## Branch Information
+
+This repository maintains multiple branches for different system versions.
+
+| Branch          | Target System         | Description                                                                           |
+| --------------- | --------------------- | ------------------------------------------------------------------------------------- |
+| `cloud`       | BTP ABAP Environment  | Cloud-optimized version with side-by-side extensions, Latest BAS Integration Features |
+| `onPrem-2023` | On-Premise ABAP 7.56+ | On-premise version with full features including mandatory field validation            |
+
+**Current Branch:** `cloud`
 
 ## Core Components
 
@@ -137,6 +164,8 @@ All sample applications are located under `/src/zsapdev_rap_sample/` and demonst
 
 ### RAP Extensibility Enablement (`zsapdev_rap_sample_sap_bo`)
 
+⚠️ **Available only in `cloud` branch**
+
 Demonstrates syntax and data modeling approach to enable extensibility of DB, CDS, RAP Behavior and Service, so covering all the layers.
 
 **Pattern:** Managed, Managed UUID Key, Draft
@@ -217,6 +246,8 @@ Demonstrates syntax and data modeling approach to enable extensibility of DB, CD
 
 ### RAP Developer Extensibility Provider (`zsapdev_rap_sample_sap_ext`)
 
+⚠️ **Available only in `cloud` branch**
+
 Demonstrates how to extend a RAP BO enabled for that. See [RAP Extensibility Enablement (`zsapdev_rap_sample_sap_bo`)](#rap-extensibility-enablement-zsapdev_rap_sample_sap_bo). Behavior extension results in a separate behavior, which is the merged with the extended BO at runtime.
 
 **Pattern:** Managed, Managed UUID Key, Draft
@@ -256,7 +287,7 @@ Demonstrates how to extend a RAP BO enabled for that. See [RAP Extensibility Ena
 
   * **X_** - view entity extenions in all layers
   * Behavior definition
-    * R_`<Name>`TP_EXT - `extension using interface` I_`<name>`TP.  Note: Extension is **R** but using interface **I**
+    * R_`<Name>`TP_EXT - `extension using interface` I_`<name>`TP.  Note: **R** Extension is using interface **I_`<name>`TP**
     * C_`<Name>`TP_EXT - `extension for projection;`
 
 ### Side-by-Side Extension (`zsapdev_rap_sample_side_by_s4`)
@@ -269,6 +300,13 @@ Demonstrates how to extend a RAP BO enabled for that. See [RAP Extensibility Ena
 
 - Based on SAP RAP620 course materials
 - Extension of S/4HANA Public Cloud on separate BTP ABAP Environment
+- Custom CDS entity
+  ```
+  @ObjectModel.query.implementedBy: 'ABAP:ZCL_SAPDEV_PRODCLAS_READ'
+  define custom entity ZCE_ProductClassif
+  ```
+- HTTP Client: `cl_web_http_client_manager`
+- OData Client Proxy: `/iwbep/if_cp_client_proxy`
 - Service Consumption Model integration
 - Communication Arrangement configuration required
 - Cloud-to-Cloud integration pattern
@@ -287,49 +325,12 @@ Demonstrates how to extend a RAP BO enabled for that. See [RAP Extensibility Ena
 
 ---
 
-### Exchange Rate Sample (`zsapdev_rap_sample_exrate`)
-
-**Pattern:** External API Integration
-
-**Path:** [`/src/zsapdev_rap_sample/zsapdev_rap_sample_exrate`](/src/zsapdev_rap_sample/zsapdev_rap_sample_exrate)
-
----
-
----
-
 ### Code Generation Sample (`zsapdev_rap_sample_codegen`)
 
-**Pattern:** BAS-RAP UI Service Generation #UI_PROVIDER_PROJECTION_SOURCE
+Use Business Application Studio to generate a RAP UI Service. [Developer Guide with Step-by-step instructions](https://www.sapdev.eu/create-abap-cloud-ui-service-with-business-application-studio-using-rap-bo-interface/).
+
+**Prerequsites:**  RAP BO Transactional Interface CDS View Entity (`provider contract transactional_interface`)  including the following annotation `@ObjectModel.supportedCapabilities : [ #UI_PROVIDER_PROJECTION_SOURCE ]`
+
+**Pattern:** BAS-RAP UI Service Generation
 
 **Path:** [`/src/zsapdev_rap_sample/zsapdev_rap_sample_codegen`](/src/zsapdev_rap_sample/zsapdev_rap_sample_codegen)
-
----
-
-## Branch Information
-
-This repository maintains multiple branches for different deployment scenarios:
-
-| Branch          | Target System         | Description                                                                |
-| --------------- | --------------------- | -------------------------------------------------------------------------- |
-| `cloud`       | BTP ABAP Environment  | Cloud-optimized version with side-by-side extensions                       |
-| `onPrem-2023` | On-Premise ABAP 7.56+ | On-premise version with full features including mandatory field validation |
-
-**Current Branch:** `cloud`
-
----
-
-## Getting Started
-
-### Prerequisites
-
-- ABAP Development Tools (ADT) in Eclipse
-- SAP BTP ABAP Environment or SAP S/4HANA 2023+
-- Basic knowledge of RAP and CDS views
-
-### Installation
-
-1. Clone the repository to your local system
-2. Use abapGit to import the code into your ABAP system
-3. Activate all objects in the following order:
-   - Core utilities (`zsapdev_rap`)
-   - Sample applications
