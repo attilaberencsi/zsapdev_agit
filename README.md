@@ -2,21 +2,24 @@
 
 ## 📚 Table of Contents
 
-- [Overview](#overview)
-- [Getting Started](#getting-started)
-  - [Prerequisites](#prerequisites)
-  - [Branch Installation](#branch-installation)
-  - [Branch Information](#branch-information)
-- [Core Components](#core-components)
-  - [RAP Utilities (`zsapdev_rap`)](#rap-utilities-zsapdev_rap)
-- [Sample Applications](#sample-applications)
-  - [3D Printer Management - Draft (`zsapdev_rap_sample_3dp`)](#3d-printer-management---draft-zsapdev_rap_sample_3dp)
-  - [3D Printer Management - Early Numbering (`zsapdev_rap_sample_3dp_en`)](#3d-printer-management---early-numbering-zsapdev_rap_sample_3dp_en)
-  - [3D Printer Management - No Draft (`zsapdev_rap_sample_3dp_nd`)](#3d-printer-management---no-draft-zsapdev_rap_sample_3dp_nd)
-  - [RAP Extensibility Enablement (`zsapdev_rap_sample_sap_bo`)](#rap-extensibility-enablement-zsapdev_rap_sample_sap_bo)
-  - [RAP Developer Extensibility Provider (`zsapdev_rap_sample_sap_ext`)](#rap-developer-extensibility-provider-zsapdev_rap_sample_sap_ext)
-  - [Side-by-Side Extension (`zsapdev_rap_sample_side_by_s4`)](#side-by-side-extension-zsapdev_rap_sample_side_by_s4)
-  - [Code Generation Sample (`zsapdev_rap_sample_codegen`)](#code-generation-sample-zsapdev_rap_sample_codegen)
+- [sapdev.eu - ABAP RAP Reuse Libraries, Utilities and Samples](#sapdeveu---abap-rap-reuse-libraries-utilities-and-samples)
+  - [📚 Table of Contents](#-table-of-contents)
+  - [Overview](#overview)
+  - [Getting Started](#getting-started)
+    - [Prerequisites](#prerequisites)
+    - [Branch Installation](#branch-installation)
+    - [Branch Information](#branch-information)
+  - [Core Components](#core-components)
+    - [RAP Utilities (`zsapdev_rap`)](#rap-utilities-zsapdev_rap)
+  - [Sample Applications](#sample-applications)
+    - [3D Printer Management - Draft (`zsapdev_rap_sample_3dp`)](#3d-printer-management---draft-zsapdev_rap_sample_3dp)
+    - [3D Printer Management - Early Numbering (`zsapdev_rap_sample_3dp_en`)](#3d-printer-management---early-numbering-zsapdev_rap_sample_3dp_en)
+    - [3D Printer Management - No Draft (`zsapdev_rap_sample_3dp_nd`)](#3d-printer-management---no-draft-zsapdev_rap_sample_3dp_nd)
+    - [RAP Extensibility Enablement (`zsapdev_rap_sample_sap_bo`)](#rap-extensibility-enablement-zsapdev_rap_sample_sap_bo)
+    - [RAP Developer Extensibility Provider (`zsapdev_rap_sample_sap_ext`)](#rap-developer-extensibility-provider-zsapdev_rap_sample_sap_ext)
+    - [S/4HANA Side-by-Side Extension (`zsapdev_rap_sample_side_by_s4`)](#s4hana-side-by-side-extension-zsapdev_rap_sample_side_by_s4)
+    - [Code Generation Sample (`zsapdev_rap_sample_codegen`)](#code-generation-sample-zsapdev_rap_sample_codegen)
+    - [3D Print Materials \& Filaments (`zsapdev_sample_rap_3d_print`)](#3d-print-materials--filaments-zsapdev_sample_rap_3d_print)
 
 ---
 
@@ -323,7 +326,7 @@ Demonstrates how to extend a RAP BO enabled for that. See [RAP Extensibility Ena
 
 ---
 
-### Code Generation Sample (`zsapdev_rap_sample_codegen`)
+### RAP UI Service Code Generation Sample (`zsapdev_rap_sample_codegen`)
 
 ⚠️ **Available only in `cloud` branch**
 
@@ -334,3 +337,59 @@ Use Business Application Studio to generate a RAP UI Service. [Developer Guide w
 **Pattern:** BAS-RAP UI Service Generation
 
 **Path:** [`/src/zsapdev_rap_sample/zsapdev_rap_sample_codegen`](/src/zsapdev_rap_sample/zsapdev_rap_sample_codegen)
+
+---
+
+### 3D Print Materials & Filaments (`zsapdev_sample_rap_3d_print`)
+
+⚠️ **Available only in `cloud` branch**
+
+Demonstrates two separate RAP Business Objects for managing 3D printing materials and filaments with extensibility support.
+
+**Pattern:** Managed, Late Numbering, Draft, Extensible
+
+**Key Features:**
+
+- Two independent RAP Business Objects:
+  - **Material Management** - General 3D printing materials (consumables, spare parts, etc.)
+  - **Filament Management** - Specialized filament tracking with temperature settings
+- Late numbering with separate number range objects (`z3dmat`, `z3dfila`)
+- Extensible behavior definitions for custom enhancements
+- Draft enabled for both entities
+- Mandatory field validation on save
+- Admin data tracking (created by/at, changed by/at)
+- Currency and unit of measure handling
+- Authorization control lists (DCLs)
+
+**Components:**
+
+- **Filament BO:**
+
+  - Behavior: `zr_sapdev_filament` (restricted), `zc_sapdev_filament` (consumption)
+  - Views: `zr_sapdev_filament`, `zc_sapdev_filament`
+  - Tables: `zsapdev_filament` (active), `zsapdev_flment_d` (draft)
+  - Service: `zui_sapdev_filament_o4` (OData V4)
+  - Number Range: `z3dfila`
+- **Material BO:**
+
+  - Behavior: `zr_sapdev_material` (restricted), `zc_sapdev_material` (consumption)
+  - Views: `zr_sapdev_material`, `zc_sapdev_material`
+  - Tables: `zsapdev_material` (active), `zsapdev_mtrial_d` (draft)
+  - Service: `zui_sapdev_material_o4` (OData V4)
+  - Number Range: `z3dmat`
+
+**Frontend:**
+
+Separate UI services for each business object.
+
+- 3D Printer Materials: [Fiori Elements UI with BarCode Display](https://github.com/attilaberencsi/zsapdev_3dmat) based on PartNumber
+  * TypeScript
+  * Controller extension (`controller.ts`) for given Entity/Object Page only
+  * re-declare module 'sap/ui/core/mvc/ControllerExtension' for easier inheritance in TS
+  * Custom subsection fragments and event handlers
+  * manifest.json configuration to use controller extension ( `controller.ts` ) as EventHandler for custom actions (instead of generated handler SomeName.ts )
+  * Barcode rendering upon action
+  * Opening a dialog fragment and rendering Barcode inside the dialog
+- 3D Filaments
+
+**Path:** [`/src/zsapdev_rap_sample/zsapdev_sample_rap_3d_print`](/src/zsapdev_rap_sample/zsapdev_sample_rap_3d_print)
