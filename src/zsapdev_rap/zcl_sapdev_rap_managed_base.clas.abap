@@ -63,7 +63,7 @@ ENDCLASS.
 
 
 
-CLASS zcl_sapdev_rap_managed_base IMPLEMENTATION.
+CLASS ZCL_SAPDEV_RAP_MANAGED_BASE IMPLEMENTATION.
 
 
   METHOD constructor.
@@ -392,6 +392,7 @@ CLASS zcl_sapdev_rap_managed_base IMPLEMENTATION.
 *    ENDLOOP.
   ENDMETHOD.
 
+
   METHOD get_number.
     TRY.
         cl_numberrange_runtime=>number_get( EXPORTING nr_range_nr = i_interval
@@ -420,5 +421,4 @@ CLASS zcl_sapdev_rap_managed_base IMPLEMENTATION.
                                              nro_message = CONV symsgv( ex_nro->get_text( ) ) ).
     ENDTRY.
   ENDMETHOD.
-
 ENDCLASS.

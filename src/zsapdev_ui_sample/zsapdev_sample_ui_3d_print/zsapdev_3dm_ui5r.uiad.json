@@ -1,0 +1,35 @@
+{
+  "formatVersion": "2",
+  "header": {
+    "description": "3D Printer Components and Accessories",
+    "originalLanguage": "en",
+    "abapLanguageVersion": "cloudDevelopment"
+  },
+  "generalInformation": {
+    "appType": "ui5",
+    "catalogId": "SAP_TC_UI5_REPO_UIAD",
+    "targetMappingTitle": "Material"
+  },
+  "ui5AppDetails": {
+    "appId": "com.sapdev.threed.zsapdev3dpproduct"
+  },
+  "navigation": {
+    "targetMappingId": "UI5R_770256E30EEC76FAE3EF8DCA1DE5BC32EC0A69FA_TM",
+    "semanticObject": "ZSapdev3DMaterial",
+    "action": "maintain",
+    "desktop": true,
+    "tablet": true,
+    "phone": true
+  },
+  "tiles": [
+    {
+      "id": "UI5R_770256E30EEC76FAE3EF8DCA1DE5BC32EC0A69FA_AL",
+      "tileType": "static",
+      "isDefault": true,
+      "standard": {
+        "title": "Material",
+        "subtitle": "manage"
+      }
+    }
+  ]
+}
