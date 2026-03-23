@@ -263,7 +263,7 @@ Demonstrates how to extend a RAP BO enabled for that. See [RAP Extensibility Ena
 
 **Components**
 
-![3D Printer UI](https://file+.vscode-resource.vscode-cdn.net/d%3A/Workspaces/GitHub/attilaberencsi/zsapdev_agit/image/README/1760284314001.png)
+![3D Printer UI](image/README/1760284314001.png)
 
 **RAP Naming Conventions**
 
