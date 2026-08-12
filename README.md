@@ -1,3 +1,5 @@
+
+
 # sapdev.eu - ABAP RAP Reuse Libraries, Utilities and Samples
 
 ## 📚 Table of Contents
@@ -139,7 +141,7 @@ All sample applications are located under `/src/zsapdev_rap_sample/` and demonst
 
 ### 3D Printer Management - No Draft (`zsapdev_rap_sample_3dp_nd`)
 
-**Pattern:** Managed, Managed UUID Key, Draft
+**Pattern:** Managed, Managed UUID Key, No Draft
 
 **Key Features:**
 
